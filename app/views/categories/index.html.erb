@@ -1,0 +1,14 @@
+<h1> Admin is adding new categories to the model</h1>
+
+<%= form_for :category do |f| %>
+
+  <div><%= f.label :name %>
+  <%= f.text_field :name, :autofocus => true %></div><br />
+
+  
+  <div><%= f.submit "Add" %></div><br />
+<% end %>
+
+<%=link_to "back" ,new_user_path, :method => "get" %><br/>
+<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
+

@@ -1,0 +1,28 @@
+<h1>Edit user information</h1>
+
+
+<%= form_for :user, url:user_path(current_user.id), method: :put do |f| %>
+<%#<%= devise_error_messages! %>
+
+  <div><%= f.label :Firstname %>
+  <%= f.text_field :first_name, :autofocus => true, :placeholder =>"First Name" %></div><br />
+
+  <div><%= f.label :Lastname %>
+  <%= f.text_field :last_name, :placeholder => "Lirst Name" %></div><br />
+
+  <div><%= f.label :Dateofbirth %>
+ 
+  <%= f.text_field :date_of_birth, :type => "date", :placeholder =>"30/05/1989" %></div><br />
+
+  <div><%= f.label :Gender %>
+  	<%= f.select(:gender, options_for_select([['Male', 1], ['Female', 2]], 1))%>
+  </div><br />
+
+  <div><%= f.label :Phoneno %>
+  <%= f.text_field :phone_no, :type => "tel" %></div><br />
+
+  <div><%= f.label :Picture %>
+  <%= f.file_field :picture %></div><br />
+
+  <div><%= f.submit "Edit" %></div><br />
+<% end %>
