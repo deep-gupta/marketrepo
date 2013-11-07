@@ -15,10 +15,13 @@ Market::Application.routes.draw do
           collection do
           get 'shopkeeper'
           get 'visitors'
+          get 'displayallusers'
           end
       end
+      resources :welcomes
+      
 
-       root :to => 'users#index'
+       root :to => 'welcome#index'
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
       resources :categories do

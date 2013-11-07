@@ -1,1 +1,22 @@
 <h1>for admin to show all users</h1>
+<center>
+<table border="2">
+
+<tr>
+	<th>Name</th>
+	<th>Date of birth</th>
+</tr>
+
+<% @users.each do |u|%>
+<tr>
+
+
+	<td><%= u.first_name %></td>
+	<td><%= u.date_of_birth %></td>
+
+</tr>
+<% end %>	
+
+
+</table>
+</center>
