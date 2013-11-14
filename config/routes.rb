@@ -1,4 +1,7 @@
 Market::Application.routes.draw do
+  
+  get "products/index"
+
   devise_for :users
 
   # The priority is based upon order of creation:
@@ -13,11 +16,14 @@ Market::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
       resources :users do
           collection do
-          get 'shopkeeper'
-          get 'visitors'
           get 'displayallusers'
+          get 'confirm_pending'
+
+        end          
+          member do
+            get 'pending'
           end
-      end
+        end
       resources :welcomes
       
 
@@ -30,18 +36,21 @@ Market::Application.routes.draw do
           get 'savecategories'
           end
         end
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
 
+        resources :malls do
+          collection do
+          get 'showstate'
+          get 'showcity'
+          end
+
+        end
+        
+        resources :shops do
+          resources :products
+          collection do
+            get 'showmall'
+          end
+        end
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

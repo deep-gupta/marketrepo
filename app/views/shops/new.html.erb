@@ -1,0 +1,78 @@
+<h1>Creatuin a shop for Shopkeepers </h1>
+<center>
+<div>
+  <%= form_for :shop, url: shops_path, method: :post do |f| %>
+
+  <div> 
+    <%= label_tag :Country %>
+  </div>
+  
+  <div >
+    <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },{ :include_blank => true, :prompt => 'Select' }, {:id => 'cou'}) %>
+  </div>
+
+  <div> 
+    <%= label_tag :State %>
+  </div>
+
+  <div>
+    <%= select("state", "state_id",{},{ :include_blank => true , :prompt => 'Select'}, {:id => 'sta'}) %>
+  </div>
+
+  <div> 
+    <%= label_tag :City %>
+  </div>
+
+  <div>
+    <%= select("city", "city_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'cit'}) %>
+  </div>
+
+  <div> 
+    <%= label_tag :Mall %>
+  </div>
+
+
+	<div>
+    <%= select("mall", "mall_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'mal'}) %>
+  </div>
+
+
+  <div>
+    <%= f.label :Name %>
+    <%= f.text_field :name, :autofocus => true, :placeholder => "shop name" %>
+  </div><br />
+
+    
+  <div class="btn btn-primary">
+    <%= f.submit "Submit" %>
+  </div><br />
+  <% end %>
+</div>
+
+</center>
+
+<script type="text/javascript">
+ $('#cou').change(function() {
+  var cid = $(this).val();
+  $.get( "/malls/showstate",{ id: cid}, function( data ) {
+    $('#sta').html(data);
+  });
+});
+
+ $('#sta').change(function() {
+  var sid = $(this).val();
+  $.get( "/malls/showcity",{ id: sid}, function( data ) {
+    $('#cit').html(data);
+  });
+});
+
+
+ $('#cit').change(function() {
+  var cid = $(this).val();
+  $.get( "/shops/showmall",{ id: cid}, function( data ) {
+    $('#mal').html(data);
+  });
+});
+  
+
+</script>

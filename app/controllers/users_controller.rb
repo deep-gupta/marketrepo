@@ -1,43 +1,44 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
-	def index
-
-		
-	end
+  def index
+    @users = User.all	
+  end
 	
 	def new
 		
-		if current_user.user_type == '1'
-			render 'visitors'
-		end
-		if current_user.user_type == '2'
-			render 'shopkeeper'
-		end
 	end	
+ 	
  	def edit
- 	  @user= User.find(current_user.id)			
+ 	  @user= User.find(current_user.id)	
+ 	  @pictures = 1.times{ @user.pictures.build }
  	end
- 	def update
- 	
- 		@user = User.find(current_user.id)
- 		if @user.update_attributes(params[:user])
- 	
- 		else
- 	
- 	
- 		end
 
+ 	def update
+ 	  @user = User.find(params[:id])
+ 	  @user.update_attributes(params[:user])
+	end
+
+
+ 	def destroy
+ 		@user = User.find(params[:id])
+ 		@user.destroy
+ 		render 'displayallusers'
  	end
+ 	
 
  	def displayallusers
  		@users = User.all
  	end
 
-	def visitors
+ 	def confirm_pending
+ 		@users = User.where("user_type = ? and status_of_shopkeeper = ?","2","pending") 
+ 		#Model.where("column = ? or other_column = ?", value, other_value)
+ 	end
 
-	end
-	def shopkeeper
-		
-	end
+ 	def pending
+ 		@user = User.where(:id => params[:id]).first
+ 		@user.update_column(:status_of_shopkeeper,'confirm')
+ 		redirect_to confirm_pending_users_url
+ 	end
 end

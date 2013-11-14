@@ -1,0 +1,16 @@
+
+
+<center>
+<h1> Product of a Shop</h1>
+
+<% if @products.present? %>
+	<% @products.each do |p|%>
+		<%= p.name %>
+	<% end %>
+<% else %>
+ <h3> No product added to the shop till now</h3>
+<% end %>
+<br /><br />
+<%=link_to "Add product" ,new_shop_product_path, :method => "get" %><br />
+
+</center>

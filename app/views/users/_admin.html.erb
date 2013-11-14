@@ -1,8 +1,15 @@
 <h1>after sign in Admin you came here</h1>
 
-<%=link_to "confirm pending request",:method => "get" %><br />
+<%=link_to "confirm pending request", confirm_pending_users_path,:method =>"get" %><br />
+<%=link_to "List of all malls", malls_path,:method =>"get" %>
+<div><%=link_to "show all users of the site", displayallusers_users_path, :method => "get" %><br /></div>
+<%=link_to "Create mall for shopkeepers",new_mall_path, :method => "get" %><br />
 
-<%=link_to "show all users of the site", displayallusers_users_path, :method => "get" %><br />	
+<div id="displayuser" style="display:none"></div>
 <%=link_to "Add items to the Category table" ,categories_path, :method => "get" %><br />
-<%=link_to "cnacle user registration",cancel_user_registration_path, :method => "get" %><br />
+<%#=link_to "cancle user registration",cancel_user_registration_path, :method => "delete" %>
+<br />
 <%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
+
+
+

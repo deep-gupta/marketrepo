@@ -1,15 +1,18 @@
 <h1>select the categories for the visitors and shopkeeper</h1>
 
+<center>
 <%= form_tag(savecategories_categories_path, method: "get") do %>
 
 <% @category.each do |c| %>
 <%= check_box_tag 'name_ids[]', c.id %>
 <%= label_tag(:name, c.name) %>
 <% end %>
-<br/>
+
 
 <%= submit_tag("submit")%>
 
 <%end%>
 
-<%=link_to "Back" ,visitors_users_path %><br />
+<%=link_to "Back" ,users_path %><br />
+
+</center>

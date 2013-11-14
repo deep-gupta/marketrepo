@@ -1,0 +1,54 @@
+<h1> create a new product for shop </h1>
+
+
+<center>
+<%= form_for @product, url: shop_products_path, method: :post do |f| %>
+
+  <div>
+    <%= f.hidden_field :shop_id, :value => params[:shop_id] %>
+  </div>
+
+
+  <div> <%= f.label :'Product Name' %>
+  <%= f.text_field :name, :autofocus => true, :placeholder =>"Product Name" %></div><br />
+
+
+  <div>
+    <%= f.label :'Product Category' %>
+  </div>
+  <div>
+  
+  <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+  <%#= select_tag(:city_id, options_for_select(...)) %>
+  <%#= select("category", "category_id", Category.all) %>
+  </div>
+
+  <div>
+    <%#= f.fields_for :pictures do |pic| %>
+      <%#= pic.select_tag "category_id", options_from_collection_for_select(@category, "id", "name") %>
+    <%# end %>
+  </div>
+ 
+
+  <div><%= f.label :'Product Price' %>
+    <%= f.text_field :price, :placeholder => "price" %>
+  </div><br />
+
+  <div>
+   	<%= f.label :Description %>
+  	<%= f.text_area :description, :size => "10x10" %>	
+  </div>
+  
+  <div>
+  	<%= f.label :picture %>
+  </div>
+  <div>
+		<%= f.fields_for :pictures do |pic| %>
+		  <%= pic.file_field :image %>
+		<% end %>
+  </div><br />
+
+  <div><%= f.submit "Submit" %></div><br />
+<% end %>
+
+</center>

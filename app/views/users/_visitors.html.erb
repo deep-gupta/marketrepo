@@ -2,6 +2,8 @@
 
 <%=link_to "Edit profile" ,edit_user_path(current_user), :method => "get" %><br />
 
-<%=link_to "choose category for which you want email alert " ,choosecategories_categories_path, :method => "get" %><br />
+<%=link_to "Show Malls" , :method => "get" %><br 
+
+<%=link_to "choose category for which you want emaol alert",choosecategories_categories_path, :method => "get" %><br />
 
 <%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
