@@ -1,9 +1,29 @@
+<%= stylesheet_link_tag "custom" %>
 <h1>This is visitors page </h1>
 
 <%=link_to "Edit profile" ,edit_user_path(current_user), :method => "get" %><br />
 
-<%=link_to "Show Malls" , :method => "get" %><br 
+<%=link_to "Buy product" , :method => "get" %><br 
 
-<%=link_to "choose category for which you want emaol alert",choosecategories_categories_path, :method => "get" %><br />
+<%=link_to "choose category for email" ,choosecategories_categories_path, :method => "get" %><br />
 
 <%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
+
+<center>
+	<div>
+	<%= select("category", "category_id", Category.all.collect {|r| [ r.name, r.id ] }, { :include_blank => true },{:id => "cat"})%>	
+	</div>
+	<div id="catdata"> 
+
+
+	</div>
+</center>
+
+<script type="text/javascript">
+ $('#cat').change(function() {
+  var cid = $(this).val();
+  $.get( "/users/showproduct",{ id: cid }, function( data ) {
+    $('#catdata').html(data);
+  });
+});
+ </script>

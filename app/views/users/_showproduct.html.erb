@@ -1,0 +1,15 @@
+
+<%= stylesheet_link_tag "custom" %>
+<h1>List of product</h1>
+	<table border="2">
+<% @products.each do |p| %>
+	
+	
+		<tr>
+			<td><%= p.name %></td>
+			<td><%= p.description %></td>
+			<td><%= link_to "Buy", :method => "get"%></td>
+		</tr>
+	
+<% end %>
+</table>

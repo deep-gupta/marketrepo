@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
-  def index
+ 	def index
     @users = User.all	
-  end
+  	end
 	
 	def new
 		
@@ -41,4 +41,10 @@ class UsersController < ApplicationController
  		@user.update_column(:status_of_shopkeeper,'confirm')
  		redirect_to confirm_pending_users_url
  	end
+ 	def showproduct
+ 		@products = Category.find(params[:id]).products
+
+ 		render :partial => 'showproduct'
+  	end
+ 
 end

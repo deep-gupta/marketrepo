@@ -18,6 +18,7 @@ Market::Application.routes.draw do
           collection do
           get 'displayallusers'
           get 'confirm_pending'
+          get 'showproduct'
 
         end          
           member do

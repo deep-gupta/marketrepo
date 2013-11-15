@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    debugger
+    
     @product = Product.create(params[:product])
     #@productcategory = ProductCategory.new(:product_id => @product, :Category_id => params[:category_id])
     @product.save
