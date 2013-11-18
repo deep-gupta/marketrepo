@@ -1,0 +1,18 @@
+
+
+<% if @carts.present? %>
+<h1> <%=@carts.count%> items is added toyour cart </h1>
+<% @carts.each do |c|%>
+<ul>
+  <li><%= c.product.name %></li>
+  <%=link_to "Remove" ,cart_path(c.id), :method => "delete" %>
+</ul>
+<% end %>
+<% else %>
+<h1> No items added till now</h1>
+<% end %>
+<br />
+<br />
+<%=link_to "Add more items", users_path, :method => "get" %><br /><br />
+
+<%= button_to "place order", { :action => "new"}, :confirm => "Are you sure?", :method => :get %>

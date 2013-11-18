@@ -21,5 +21,9 @@ class User < ActiveRecord::Base
   has_many :pictures, as: :imageable
   accepts_nested_attributes_for :pictures
 
+  has_many :orders
+
+  has_many :carts
+
 end
 

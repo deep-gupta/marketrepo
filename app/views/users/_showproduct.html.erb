@@ -8,7 +8,7 @@
 		<tr>
 			<td><%= p.name %></td>
 			<td><%= p.description %></td>
-			<td><%= link_to "Buy", :method => "get"%></td>
+			<td><%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%></td>
 		</tr>
 	
 <% end %>

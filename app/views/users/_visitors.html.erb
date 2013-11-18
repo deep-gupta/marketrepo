@@ -1,9 +1,10 @@
 <%= stylesheet_link_tag "custom" %>
-<h1>This is visitors page </h1>
-
+<h3>This is visitors page </h3>
+<%#= hidden_field(:object, :field, :value => @order)%>
+<%#o debugger %>
 <%=link_to "Edit profile" ,edit_user_path(current_user), :method => "get" %><br />
 
-<%=link_to "Buy product" , :method => "get" %><br 
+<%=link_to "Add to cart" , :method => "get" %><br>
 
 <%=link_to "choose category for email" ,choosecategories_categories_path, :method => "get" %><br />
 
@@ -11,13 +12,22 @@
 
 <center>
 	<div>
-	<%= select("category", "category_id", Category.all.collect {|r| [ r.name, r.id ] }, { :include_blank => true },{:id => "cat"})%>	
+		<%= label :'select category', 'Select Category'%>
+	</div>
+	<div>
+	<%= select("category", "category_id", Category.all.collect {|r| [ r.name, r.id ] }, {:prompt => "select"},{:id => "cat"})%>	
 	</div>
 	<div id="catdata"> 
-
-
 	</div>
 </center>
+
+<%#= button_to "Place order", :action => "/orders/show_cart_product",:method => "get"%>
+<%#= button_to "place order", { :action => "show_cart_product", :controller => orders },
+          :confirm => "Are you sure?", :method => :get %>
+
+<%=link_to "place order" ,show_cart_product_orders_path, :method => "get" %>
+
+
 
 <script type="text/javascript">
  $('#cat').change(function() {

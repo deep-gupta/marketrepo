@@ -1,0 +1,30 @@
+<h1>Enter users info</h1>
+
+
+<center>
+<%= form_for :order, url: orders_path, method: :post do |f| %>
+
+  <div>
+    <%#= f.hidden_field :shop_id, :value => params[:shop_id] %>
+  </div>
+
+
+  <div> <%= f.label :Name %>
+  <%= f.text_field :name, :autofocus => true, :placeholder =>"Enter Name" %></div><br />
+
+
+  <div>
+    <%= f.label :Address %>
+  </div>
+  <div>
+  	<%= f.text_area :delivery, :size => "10x10" %>
+  </div>
+
+  <div><%= f.label :contact %>
+    <%= f.text_field :contact, :placeholder => "Mobile no." %>
+  </div><br />
+
+  <div><%= f.submit "Submit" %></div>
+<% end %>
+<%=link_to "Back" ,show_cart_product_orders_path, :method => "get" %>
+</center>
