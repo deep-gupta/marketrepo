@@ -1,7 +1,7 @@
 <h1> come inside the shop </h1>
 
-<%=link_to "show products" ,shop_products_path(@shop), :method => "get" %><br />
-<%=link_to "Generate Offer ", :method => "get" %><br />
+<%=link_to "show products" ,shop_products_path(@shop) %><br />
+<%=link_to "Generate Offer", new_shop_offer_path(@shop) %><br />
 
 
-<%=link_to "Back " ,users_path, :method => "get" %><br />
+<%=link_to "Back " ,users_path %><br />

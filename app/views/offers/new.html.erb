@@ -1,0 +1,43 @@
+<h1>Generate Offer</h1>
+
+
+<center>
+<%= form_for @offer, url: shop_offers_path, method: :post do |f| %>
+
+
+  <div>
+    <%= f.hidden_field :shop_id, :value => params[:shop_id] %>
+  </div>
+
+
+  <div> <%= f.label :'Start Date' %>
+  <%= f.text_field :from_date, :type => "date", :placeholder =>"Start Date" %></div><br />
+
+  <div> <%= f.label :'End Date' %>
+  <%= f.text_field :to_date, :type => "date", :placeholder =>"End Date" %></div><br />
+
+  <div>
+    <%= f.label :'Offer Category' %>
+  </div>
+  <div>
+  <%=select_tag "category", options_from_collection_for_select(Category.all, "id", "name"), prompt: "Select category"%>
+  </div>
+  <div>
+  	
+  </div>
+  	<%= f.label :'Message' %>
+  	<%= f.text_area :message, :size =>"10x10" %>
+  <div>
+  	<%= f.label :picture %>
+  </div>
+  <div>
+		<%#= f.fields_for :pictures do |pic| %>
+		  <%#= pic.file_field :image %>
+		<%# end %>
+  </div><br />
+
+  <div><%= f.submit "Submit" %></div><br />
+<% end %>
+<%=link_to "Back" ,shop_path(params[:shop_id]) %><br />
+
+</center>

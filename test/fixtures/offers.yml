@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  shop_id: 1
+  from_date: 2013-11-18
+  to_date: 2013-11-18
+  category_id: 1
+  message: MyText
+
+two:
+  shop_id: 1
+  from_date: 2013-11-18
+  to_date: 2013-11-18
+  category_id: 1
+  message: MyText

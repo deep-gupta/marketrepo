@@ -36,7 +36,7 @@ Market::Application.routes.draw do
         end
         
         resources :shops do
-          resources :products
+          resources :products, :offers
           collection do
             get 'showmall'
           end
