@@ -3,21 +3,19 @@
 <%=link_to "Edit profile" ,edit_user_path(current_user)%><br />
 
 <%=link_to "create shop " ,new_shop_path %><br />
-
+<div style="position:absolute;top:45px;right:20px;">
 <%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
+</div>
 
-
-
-<center>
-	<h2>shops</h2>
-		<% if current_user.shops.present? %>
-			<% current_user.shops.each do |s|%>
-				<%=link_to s.name ,shop_path(s.id) %><br />
-				<% end %>
-		<% else %>
-		
-		<% end %>
-</center>
-
+<div style="position:absolute;top:45px;right:50%;">
+    <h3>shops</h3>
+      <% if current_user.shops.present? %>
+        <% current_user.shops.each do |s|%>
+          <%=link_to s.name ,shop_path(s.id) %><br />
+          <% end %>
+      <% else %>
+      <h3>No shop</h3>
+      <% end %>
+</div>
 <%= render partial: "image" %>
 

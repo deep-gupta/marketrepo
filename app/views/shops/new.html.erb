@@ -1,5 +1,5 @@
-<h1>Creatuin a shop for Shopkeepers </h1>
 <center>
+<h3>Create shop  </h3>
 <div>
   <%= form_for :shop, url: shops_path, method: :post do |f| %>
 
@@ -32,7 +32,7 @@
   </div>
 
 
-	<div>
+  <div>
     <%= select("mall", "mall_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'mal'}) %>
   </div>
 
@@ -76,3 +76,8 @@
   
 
 </script>
+
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
+<%=link_to "Back" ,users_path %>
+</div>

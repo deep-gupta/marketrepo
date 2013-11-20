@@ -1,19 +1,22 @@
 
 
 <center>
-<h1> Product of a Shop</h1>
+<h3> Available Product </h3>
 
 <% if @products.present? %>
-	<% @products.each do |p|%>
-		<%= p.name %>
-	<% end %>
+  <% @products.each do |p|%>
+    <%= p.name %>
+    <%= link_to "  show",shop_product_path(params[:shop_id],p.id)%><br/>
+  <% end %>
 <% else %>
  <h3> No product added to the shop till now</h3>
 <% end %>
 <br /><br />
 <%=link_to "Add product" ,new_shop_product_path, :method => "get" %><br />
 
-<%=link_to "Back" ,shop_path(params[:shop_id]) %><br />
-
-
 </center>
+
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
+<%=link_to "Back" , shop_path(params[:shop_id]), :method => "get" %>
+</div>

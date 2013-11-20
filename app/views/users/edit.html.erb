@@ -1,34 +1,35 @@
-<h1>Edit user information</h1>
-
-<center>
+<center><br/><br />
+<h3>Edit user information</h3>
+<div class="form-horizontal">
 <%= form_for @user, url:user_path(current_user.id), method: :put, html: {multipart: true} do |f| %>
 
-  <div><%= f.label :Firstname %>
+  <div class="form-group"><%= f.label :Firstname %>
   <%= f.text_field :first_name, :autofocus => true, :placeholder =>"First Name" %></div><br />
 
-  <div><%= f.label :Lastname %>
-    <%= f.text_field :last_name, :placeholder => "Lirst Name" %>
-  </div><br />
+  <div><%= f.label :Lastname %></div>
+  <div><%= f.text_field :last_name, :placeholder => "Lirst Name" %></div><br />
 
-  <div><%= f.label :Dateofbirth %>
-    <%= f.text_field :date_of_birth, :type => "date", :placeholder =>"30/05/1989"%></div><br />
-  <div><%= f.label :Gender %>
-  	<%= f.select(:gender, options_for_select([['Male', 1], ['Female', 2]], 1))%>
-  </div><br />
+  <div><%= f.label :Dateofbirth %></div>
+  <div><%= f.text_field :date_of_birth, :type => "date", :placeholder =>"30/05/1989"%></div><br />
+  
+  <div><%= f.label :Gender %></div>
+  <div><%= f.select(:gender, options_for_select([['Male', 1], ['Female', 2]], 1))%></div><br />
 
-  <div><%= f.label :Phoneno %>
-    <%= f.text_field :phone_no, :type => "tel" %>
-  </div><br />
+  <div><%= f.label :Phoneno %></div>
+  <div><%= f.text_field :phone_no, :type => "tel" %></div><br />
 
-  <div><%= f.label :picture %>
-  </div>
+  <div><%= f.label :picture %></div>
   <div>
     <%= f.fields_for :pictures do |p|%>
     <%= p.file_field :image %>
     <% end %>
   </div><br />
 
-  <div><%= f.submit "Edit" %></div><br />
-<% end %>
+  <div class="btn btn-primary"><%= f.submit "Edit" %></div><br />
 
+<% end %>
+</div>
 </center>
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
+</div>

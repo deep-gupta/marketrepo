@@ -1,0 +1,15 @@
+<strong> Info of the product </strong><br/>
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<%= link_to "back", shop_products_path(params[:shop_id]) %>

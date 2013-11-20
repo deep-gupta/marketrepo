@@ -1,7 +1,6 @@
-<h1>create new mall</h1>
-
 <center>
-<div>
+<h3>create new mall</h3>
+  <div>
   <%= form_for :mall, url:malls_path, method: :post do |f| %>
 
   <div> 
@@ -63,3 +62,8 @@
   
 
 </script>
+
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
+<%=link_to "Back" , users_path %>
+</div>

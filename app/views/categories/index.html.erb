@@ -1,5 +1,6 @@
-<h1> Admin is adding new categories to the model</h1>
 <center>
+<h3> Enter the name of new category and press add</h3>
+
 <%= form_for :category do |f| %>
 
   <div><%= f.label :name %>
@@ -9,7 +10,13 @@
   <div><%= f.submit "Add" %></div><br />
 <% end %>
 
-<%=link_to "back" ,users_path, :method => "get" %><br/>
-<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
+
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
+<%=link_to "Back" , users_path %>
+</div>
+
+
+
 
 </center>

@@ -1,7 +1,9 @@
-<h1> come inside the shop </h1>
+<h3> you are inside <%= @shop.name %> shop</h3>
 
 <%=link_to "show products" ,shop_products_path(@shop) %><br />
 <%=link_to "Generate Offer", new_shop_offer_path(@shop) %><br />
 
-
-<%=link_to "Back " ,users_path %><br />
+<div style="position:absolute;top:45px;right:20px;">
+  <%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
+  <%=link_to "Back" ,users_path %>
+</div>

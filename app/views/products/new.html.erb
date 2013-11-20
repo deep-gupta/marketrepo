@@ -1,7 +1,5 @@
-<h1> create a new product for shop </h1>
-
-
-<center>
+<center><br/><br/>
+<h3> Create product for shop </h3>
 <%= form_for @product, url: shop_products_path, method: :post do |f| %>
 
   <div>
@@ -10,45 +8,41 @@
 
 
   <div> <%= f.label :'Product Name' %>
-  <%= f.text_field :name, :autofocus => true, :placeholder =>"Product Name" %></div><br />
+    <%= f.text_field :name, :autofocus => true, :placeholder =>"Product Name" %>
+  </div><br />
 
 
   <div>
     <%= f.label :'Product Category' %>
   </div>
   <div>
-  
-  <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
-  <%#= select_tag(:city_id, options_for_select(...)) %>
-  <%#= select("category", "category_id", Category.all) %>
+    <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </div>
-
-  <div>
-    <%#= f.fields_for :pictures do |pic| %>
-      <%#= pic.select_tag "category_id", options_from_collection_for_select(@category, "id", "name") %>
-    <%# end %>
-  </div>
- 
 
   <div><%= f.label :'Product Price' %>
     <%= f.text_field :price, :placeholder => "price" %>
   </div><br />
 
   <div>
-   	<%= f.label :Description %>
-  	<%= f.text_area :description, :size => "10x10" %>	
+    <%= f.label :Description %>
+    <%= f.text_area :description, :size => "10x10" %> 
   </div>
   
   <div>
-  	<%= f.label :picture %>
+    <%= f.label :picture %>
   </div>
   <div>
-		<%= f.fields_for :pictures do |pic| %>
-		  <%= pic.file_field :image %>
-		<% end %>
+    <%= f.fields_for :pictures do |pic| %>
+      <%= pic.file_field :image %>
+    <% end %>
   </div><br />
 
-  <div><%= f.submit "Submit", :class => "btn btn-default" %></div><br />
+  <div class="btn btn-primary"><%= f.submit "Submit", :class => "btn btn-default" %></div><br />
 <% end %>
 
 </center>
+
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
+<%=link_to "Back" , shop_products_path(params[:shop_id]), :method => "get" %>
+</div>

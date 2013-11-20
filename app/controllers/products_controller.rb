@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
   end
   
   def new
-  	@product = Product.new
-  	@pictures = 1.times{ @product.pictures.build }
+    @product = Product.new
+    @pictures = 1.times{ @product.pictures.build }
     #@product_categories = 1.times{ @product.product_category.build}
     @category = Category.all
   end
@@ -18,6 +18,6 @@ class ProductsController < ApplicationController
   end
   
   def show
-    
+      @product = Product.find(params[:id])
   end
 end
