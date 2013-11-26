@@ -16,8 +16,10 @@ class UsersController < ApplicationController
   end
 
   def update
+  debugger
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
+    @user.save
     redirect_to users_url
   end
 

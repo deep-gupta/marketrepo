@@ -1,18 +1,20 @@
 
-
+<div style="background-color:gray;width:50%;height:auto;min-height:200px;position:absolute;left:25%;top:10%;border:5px solid black;">
 <% if @carts.present? %>
-<h1> <%=@carts.count%> items is added toyour cart </h1>
-<% @carts.each do |c|%>
-<ul>
-  <li><%= c.product.name %></li>
-  <%=link_to "Remove" ,cart_path(c.id), :method => "delete" %>
-</ul>
-<% end %>
+<h3> <%=@carts.count%> items is added </h3>
+  <% @carts.each do |c|%>
+    <ul>
+      <li><%= c.product.name %></li>
+      <%=link_to "Remove" ,cart_path(c.id), :method => "delete" %>
+    </ul>
+  <% end %>
 <% else %>
-<h1> No items added till now</h1>
+  <h3> No items added </h3>
 <% end %>
-<br />
-<br />
+
+<br/><br/>
+
 <%=link_to "Add more items", users_path, :method => "get" %><br /><br />
 
-<%= button_to "place order", { :action => "new"}, :confirm => "Are you sure?", :method => :get %>
+<%= button_to "place order", { :action => "new"}, :confirm => "Are you sure?", :method => :get, :class => "btn btn-primary" %>
+</div>

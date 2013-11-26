@@ -1,0 +1,11 @@
+
+
+<div style="margin:auto;width:50%;background-color:grey;">
+  <ul>
+    <% @product.each do |p| %>
+      <li class="thumbnail" style="display: inline-block;">
+        <a href="#"><img width='194' height='166' src="<%= p.pictures.first.image %>" alt="..."></a>
+       </li>
+    <% end %>
+  </ul>
+</div>    

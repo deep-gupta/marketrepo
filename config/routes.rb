@@ -24,6 +24,10 @@ Market::Application.routes.draw do
        collection do
           get 'choosecategories'
           get 'savecategories'
+          
+          end
+          member do
+          get 'show_product'
           end
         end
 
@@ -38,6 +42,7 @@ Market::Application.routes.draw do
         resources :shops do
           resources :products, :offers
           collection do
+            get 'search_result'
             get 'showmall'
           end
         end

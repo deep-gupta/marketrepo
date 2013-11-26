@@ -1,22 +1,43 @@
 
 
-<center>
+<div style="text-align:center;">
 <h3> Available Product </h3>
 
 <% if @products.present? %>
-  <% @products.each do |p|%>
-    <%= p.name %>
-    <%= link_to "  show",shop_product_path(params[:shop_id],p.id)%><br/>
+
+<div style="display:Products;width:50%;position:relative;left:25%;"> 
+<%= will_paginate(@products, :renderer => WillPaginate::ActionView::LinkRenderer) %>
+<div class="div-table">
+  <% @products.each do |p| %>
+  <div class="div-table-row">
+    <div class="div-table-col"><%= p.name%></div>
+    <div class="div-table-col"><%= p.price%></div>
+    <div class="div-table-col"><%= p.description%></div>
+  </div>
   <% end %>
+</div>
+
+</div>  
 <% else %>
  <h3> No product added to the shop till now</h3>
 <% end %>
+
 <br /><br />
+
 <%=link_to "Add product" ,new_shop_product_path, :method => "get" %><br />
 
-</center>
+</div>
 
 <div style="position:absolute;top:45px;right:20px;">
-<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
-<%=link_to "Back" , shop_path(params[:shop_id]), :method => "get" %>
+  <%=link_to "Back" , shop_path(params[:shop_id]), :method => "get" %>
 </div>
+
+<div class="search">
+  <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
+    <%= f.submit "Search", :class => "btn" %>
+  <% end %>
+</div>
+
+
+ 

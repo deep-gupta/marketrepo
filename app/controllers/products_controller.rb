@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
+before_filter :authenticate_user!
   def index
-    @products = Product.where(:shop_id => params[:shop_id])
+    if params[:page] == nil
+      @products = Product.where(:shop_id => params[:shop_id]).paginate(:page => 1, :per_page => 5)
+    else
+      @products = Product.where(:shop_id => params[:shop_id]).paginate(:page => params[:page], :per_page => 5)
+    end
   end
   
   def new

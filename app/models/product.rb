@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-  
   attr_accessible :description,:category_ids, :name, :pictures_attributes, :price, :shop_id
   validates :name,:price, :presence => true
 

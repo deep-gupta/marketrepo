@@ -1,40 +1,52 @@
-<center>
-<h3>Generate Offer</h3>
+  <h3>Generate Offer</h3>
+    
+    
+  <div style="background-color:gray;width:50%;height:74%;position:absolute;left:25%;border:5px solid black;">
+      <%= form_for @offer, url: shop_offers_path, method: :post, :class => "form-horizontal" do |f| %>
 
-<%= form_for @offer, url: shop_offers_path, method: :post do |f| %>
+
+      <div>
+        <%= f.hidden_field :shop_id, :value => params[:shop_id] %>
+      </div>
 
 
-  <div>
-    <%= f.hidden_field :shop_id, :value => params[:shop_id] %>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Start date</label>
+          <div class="col-sm-10">
+            <%= f.text_field :from_date, :type => "date", :placeholder =>"Start Date",:class => "text-field-height" %>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">End Date</label>
+        <div class="col-sm-10">
+          <%= f.text_field :to_date, :type => "date", :placeholder =>"End Date",:class => "text-field-height" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Category</label>
+        <div class="col-sm-10">
+          <%=select_tag "category", options_from_collection_for_select(Category.all, "id", "name"), prompt: "Select category"%>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Message</label>
+        <div class="col-sm-10">
+          <%= f.text_area :message, :size =>"5x5",:placeholder => "Something about the offer" %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit "Submit", :class => "btn btn-primary" %>
+        </div>
+      </div>
+      
+    <% end %>
   </div>
-
-
-  <div> <%= f.label :'Start Date' %>
-    <%= f.text_field :from_date, :type => "date", :placeholder =>"Start Date" %>
-  </div><br />
-
-  <div> <%= f.label :'End Date' %>
-    <%= f.text_field :to_date, :type => "date", :placeholder =>"End Date" %>
-  </div><br />
-
-  <div>
-    <%= f.label :'Offer Category' %>
-  </div>
-  <div>
-  <%=select_tag "category", options_from_collection_for_select(Category.all, "id", "name"), prompt: "Select category"%>
-  </div>
-  
-  <div>
-    <%= f.label :'Message' %>
-    <%= f.text_area :message, :size =>"10x10" %>
-  </div>
-  
-  <div class="btn btn-primary"><%= f.submit "Submit" %></div><br />
-  
-<% end %>
-</center>
 
 <div style="position:absolute;top:45px;right:20px;">
-<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
-<%=link_to "Back" , shop_path(params[:shop_id]), :method => "get" %>
+  <%=link_to "Back" , shop_path(params[:shop_id]), :method => "get" %>
 </div>

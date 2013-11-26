@@ -1,33 +1,30 @@
 <%= stylesheet_link_tag "custom" %>
-<h3>This is visitors page </h3>
-<%#= hidden_field(:object, :field, :value => @order)%>
-<%#o debugger %>
-<%=link_to "Edit profile" ,edit_user_path(current_user), :method => "get" %><br />
 
-<%=link_to "Add to cart" %><br>
+<h3>Welcome <% current_user.first_name %></h3>
+<div class="well" style="max-width: 340px;height:500px; padding: 8px 0;">
+  <ul class="nav nav-list">
+    <li class="nav-header">User Action</li>
+    <li class="active">
+      <%=link_to "Edit profile" ,edit_user_path(current_user), :method => "get" %>
+    </li>  
+    <li>
+      <%=link_to "choose category for email" ,choosecategories_categories_path, :method => "get" %>
+    </li>
+    <li>
+      <%=link_to "place order" ,show_cart_product_orders_path, :method => "get" %>
+    </li>
+</div>
 
-<%=link_to "choose category for email" ,choosecategories_categories_path, :method => "get" %><br />
-
-<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
-
-<center>
-	<div>
-		<%= label :'select category', 'Select Category'%>
-	</div>
-	<div>
-	<%= select("category", "category_id", Category.all.collect {|r| [ r.name, r.id ] }, {:prompt => "select"},{:id => "cat"})%>	
-	</div>
-	<div id="catdata"> 
-	</div>
-</center>
-
-<%#= button_to "Place order", :action => "/orders/show_cart_product",:method => "get"%>
-<%#= button_to "place order", { :action => "show_cart_product", :controller => orders },
-          :confirm => "Are you sure?", :method => :get %>
-
-<%=link_to "place order" ,show_cart_product_orders_path, :method => "get" %>
-
-
+<div style="position:absolute;top:60px;left:45%;">
+  <div>
+    <%= label :'select category', 'Select Category'%>
+  </div>
+  <div>
+  <%= select("category", "category_id", Category.all.collect {|r| [ r.name, r.id ] }, {:prompt => "select"},{:id => "cat"})%> 
+  </div>
+  <div id="catdata"> 
+  </div>
+</div>
 
 <script type="text/javascript">
  $('#cat').change(function() {

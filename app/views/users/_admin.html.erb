@@ -1,15 +1,30 @@
 <h3>Welcome <%= current_user.first_name %></h3>
 
-<%=link_to "confirm pending request", confirm_pending_users_path,:method =>"get" %><br />
-<%=link_to "List of all malls", malls_path,:method =>"get" %>
-<div><%=link_to "show all users of the site", displayallusers_users_path, :method => "get" %><br /></div>
-<%=link_to "Create mall for shopkeepers",new_mall_path, :method => "get" %><br />
+<div class="well" style="max-width: 340px;height:500px; padding: 8px 0;">
+    <ul class="nav nav-list">
+      
+      <li class="nav-header">Admin section</li>
 
-<div id="displayuser" style="display:none"></div>
-<%=link_to "Add items to the Category table" ,categories_path, :method => "get" %><br />
-<%#=link_to "cancle user registration",cancel_user_registration_path, :method => "delete" %>
-<br />
+      <li class="active">
+        <%=link_to "confirm pending request", confirm_pending_users_path,:method =>"get" %>
+      </li>
 
-<div style="position:absolute;top:45px;right:20px;">
-<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %>
+      <li>
+        <%=link_to "List of all malls", malls_path,:method =>"get" %>
+      </li>
+      
+      <li>
+        <%=link_to "show all users of the site", displayallusers_users_path, :method => "get" %>
+      </li>
+      
+      <li>
+        <%=link_to "Create mall for shopkeepers",new_mall_path, :method => "get" %>
+      </li>
+      
+      <li>
+        <%=link_to "Add items to the Category table" ,categories_path, :method => "get" %>
+      </li>
+
+    </ul>
 </div>
+

@@ -1,11 +1,12 @@
 class ShopsController < ApplicationController
+  before_filter :authenticate_user!, except: [:search_result]
   def index
 
   end
   def new
-  	#if current_user.status_of_shopkeeper == 'confirm'
-  	#	render text: "not created"
-  	#end
+    #if current_user.status_of_shopkeeper == 'confirm'
+    # render text: "not created"
+    #end
   end
   
   def create
@@ -21,8 +22,17 @@ class ShopsController < ApplicationController
   end
   
   def showmall
-  	@mall = Mall.where(:city_id => params[:id])
-  	render :partial => 'showmall'
-  	
+    @mall = Mall.where(:city_id => params[:id])
+    render :partial => 'showmall'
+    
   end
+  def search_result
+    
+    #if params[:page] == nil
+     # @product = Product.all.paginate(:page => 1, :per_page => 10)
+    #else
+     # @product = Product.all.paginate(:page => params[:page], :per_page => 10)
+    #end
+  end
+  
 end

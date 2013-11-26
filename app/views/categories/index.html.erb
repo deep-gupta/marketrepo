@@ -1,22 +1,30 @@
-<center>
+
+<div style="background-color:gray;width:50%;height:74%;position:absolute;left:25%;top:10%;border:5px solid black;>
+
 <h3> Enter the name of new category and press add</h3>
+  <div style="position:relative;top:10%;left:10%;">
+      <%= form_for :category, :class => "form-horizontal" do |f| %>
 
-<%= form_for :category do |f| %>
-
-  <div><%= f.label :name %>
-  <%= f.text_field :name, :autofocus => true %></div><br />
-
+        <div class="form-group"> 
+          <label class="col-sm-2 control-label">Name</label>
+          <div class="col-sm-10">
+            <%= f.text_field :name, :autofocus => true, :placeholder => "Category Name" %>
+          </div>
+        </div>
   
-  <div><%= f.submit "Add" %></div><br />
-<% end %>
-
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit "Submit", :class => "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+  </div>    
+</div>
 
 <div style="position:absolute;top:45px;right:20px;">
-<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
 <%=link_to "Back" , users_path %>
 </div>
 
 
 
 
-</center>

@@ -1,55 +1,57 @@
-<center>
+
 <h3>Create shop  </h3>
-<div>
-  <%= form_for :shop, url: shops_path, method: :post do |f| %>
-
-  <div> 
-    <%= label_tag :Country %>
-  </div>
-  
-  <div >
-    <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },{ :include_blank => true, :prompt => 'Select' }, {:id => 'cou'}) %>
-  </div>
-
-  <div> 
-    <%= label_tag :State %>
-  </div>
-
-  <div>
-    <%= select("state", "state_id",{},{ :include_blank => true , :prompt => 'Select'}, {:id => 'sta'}) %>
-  </div>
-
-  <div> 
-    <%= label_tag :City %>
-  </div>
-
-  <div>
-    <%= select("city", "city_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'cit'}) %>
-  </div>
-
-  <div> 
-    <%= label_tag :Mall %>
-  </div>
-
-
-  <div>
-    <%= select("mall", "mall_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'mal'}) %>
-  </div>
-
-
-  <div>
-    <%= f.label :Name %>
-    <%= f.text_field :name, :autofocus => true, :placeholder => "shop name" %>
-  </div><br />
+<div style="background-color:gray;width:50%;height:74%;position:absolute;left:25%;border:5px solid black;">
+  <%= form_for :shop, url: shops_path, method: :post, :class => "form-horizontal" do |f| %>
 
     
-  <div class="btn btn-primary">
-    <%= f.submit "Submit" %>
-  </div><br />
-  <% end %>
-</div>
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Country</label>
+      <div class="col-sm-10">
+        <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },
+        { :include_blank => true, :prompt => 'Select' }, {:id => 'cou'})  %>
+      </div>
+    </div>
+      
+    
 
-</center>
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">State</label>
+      <div class="col-sm-10">
+        <%= select("state", "state_id",{},{ :include_blank => true , :prompt => 'Select'}, {:id => 'sta'}) %>
+      </div>
+    </div>
+  
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">City</label>
+      <div class="col-sm-10">
+        <%= select("city", "city_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'cit'}) %>
+      </div>
+    </div>
+
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">State</label>
+      <div class="col-sm-10">
+        <%= select("mall", "mall_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'mal'}) %>
+      </div>
+    </div>
+
+
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Shop name</label>
+      <div class="col-sm-10">
+        <%= f.text_field :name, :autofocus => true, :placeholder => "shop name",:class => "text-field-height" %>
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Submit", :class => "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
 
 <script type="text/javascript">
  $('#cou').change(function() {
@@ -78,6 +80,5 @@
 </script>
 
 <div style="position:absolute;top:45px;right:20px;">
-<%=link_to "sign out" ,destroy_user_session_path, :method => "delete" %><br/>
-<%=link_to "Back" ,users_path %>
+  <%=link_to "Back" ,users_path %>
 </div>

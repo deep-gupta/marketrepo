@@ -1,0 +1,23 @@
+
+<h1> Table with Div </h1>
+
+
+<%#= will_paginate @product, renderer: BootstrapPagination::Rails %>
+</div style="display:Products;width:50%;position:relative;left:25%;">
+  <%= will_paginate(@product, :renderer => WillPaginate::ActionView::LinkRenderer) %>
+
+  <div class="div-table">
+    <% @product.each do |p| %>
+    <div class="div-table-row">
+      <div class="div-table-col"><%= p.name%></div>
+      <div class="div-table-col"><%= p.price%></div>
+      <div class="div-table-col"><%= p.description%></div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "Back" ,users_path, :method => "get" %>
+</div>

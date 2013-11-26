@@ -1,15 +1,21 @@
-<strong> Info of the product </strong><br/>
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+<strong> Info of the product </strong>
+<div style="position:fixed;top:60px;left:25%;right:25%">
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><%= @product.name %></td>
+    <td><%= @product.price %></td>
+    <td><%= @product.description %></td>
+  </tr>
+</table>
+</div>  
+  
 
-<%= link_to "back", shop_products_path(params[:shop_id]) %>
+
+<div style="position:fixed;top:45px;right:20px;">
+  <%= link_to "back", shop_products_path(params[:shop_id]) %>
+</div>

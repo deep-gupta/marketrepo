@@ -1,7 +1,5 @@
-<h1>Enter users info</h1>
-
-
-<center>
+<div style="text-align:center">
+<h3>Enter users info</h3>
 <%= form_for :order, url: orders_path, method: :post do |f| %>
 
   <div>
@@ -10,21 +8,27 @@
 
 
   <div> <%= f.label :Name %>
-  <%= f.text_field :name, :autofocus => true, :placeholder =>"Enter Name" %></div><br />
+    <%= f.text_field :name, :autofocus => true, :placeholder =>"Enter Name" %>
+  </div><br />
 
 
   <div>
     <%= f.label :Address %>
   </div>
+  
   <div>
-  	<%= f.text_area :delivery, :size => "10x10" %>
+    <%= f.text_area :delivery, :size => "10x10" %>
   </div>
 
   <div><%= f.label :contact %>
     <%= f.text_field :contact, :placeholder => "Mobile no." %>
   </div><br />
 
-  <div><%= f.submit "Submit" %></div>
+  <div>
+    <%= f.submit "Submit", :class => "btn btn-primary" %>
+  </div>
 <% end %>
+</div>
+<div style="position:absolute;top:45px;right:20px;">
 <%=link_to "Back" ,show_cart_product_orders_path, :method => "get" %>
-</center>
+</div>
