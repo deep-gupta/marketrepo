@@ -1,23 +1,58 @@
-
-<h1> Table with Div </h1>
-
-
-<%#= will_paginate @product, renderer: BootstrapPagination::Rails %>
-</div style="display:Products;width:50%;position:relative;left:25%;">
-  <%= will_paginate(@product, :renderer => WillPaginate::ActionView::LinkRenderer) %>
-
-  <div class="div-table">
-    <% @product.each do |p| %>
-    <div class="div-table-row">
-      <div class="div-table-col"><%= p.name%></div>
-      <div class="div-table-col"><%= p.price%></div>
-      <div class="div-table-col"><%= p.description%></div>
-    </div>
-    <% end %>
-  </div>
+<div style="text-align:center;">
+  <h3>Search Result </h3>
+</div>
+<div style="display:Products;width:100%;position:absolute;left:1%;top:25%;">
+<% if @products.present? %>
+  
+  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+    
+   
+    <div style="display:inline-block;margin:auto;width:95%;background-color:grey;position:relative;left:0px;top:0px;border:5px solid black;">
+      <ul>
+        <% @products.each do |p| %>
+          <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;margin:5px;">
+              
+              <div style="position:relative;width:50%;left:0px;top:0px;float:left">
+                <img width='194' height='166' src="<%= p.pictures.first.image %>"><%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
+              </div>
+              <div style="position:relative;left:5%;right:5%;">
+                <%= p.name %><br/><%= p.price %><br/><%= p.description %>
+              </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>  
+<div style="position:relative;top:-18px;">
+  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+</div>
+  
+<% else %>
+ <%= flash[:notice] = "No record found" %>
+ <%#= redirect_to shop_products_url(params[:shop_id]) %>
+<% end%>  
 </div>
 
 
+  
+
+<% if user_signed_in?%>
 <div style="position:absolute;top:45px;right:20px;">
-<%=link_to "Back" ,users_path, :method => "get" %>
+<%=link_to "Back" ,shop_products_path(params[:shop_id]) %>
 </div>
+<% else %>
+<div style="position:absolute;top:45px;right:20px;">
+<%=link_to "Back" ,users_path %>
+</div>
+<% end %>
+
+
+<div class="search">
+  <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
+    
+    <div>
+      <%= hidden_field_tag "shop_id", params[:shop_id] %>    
+    </div>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
+    <%= f.submit "Search", :class => "btn" %>
+  <% end %>
+</div

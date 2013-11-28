@@ -2,12 +2,9 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    
-
-    end
+  end
   
   def new
-    
   end 
   
   def edit
@@ -46,9 +43,14 @@ class UsersController < ApplicationController
     redirect_to confirm_pending_users_url
   end
   def showproduct
-    @products = Category.find(params[:id]).products
-
-    render :partial => 'showproduct'
+  
+    
+    
+      if params[:page] == nil
+        @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => 1, :per_page => 6)
+      else
+        @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => params[:page], :per_page => 6)
+      end
     end
  
 end

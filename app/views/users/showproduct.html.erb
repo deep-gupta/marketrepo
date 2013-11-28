@@ -1,0 +1,62 @@
+
+<h3>Welcome <% current_user.first_name %></h3>
+<div class="well" style="max-width: 340px;height:500px; padding: 8px 0;">
+  <ul class="nav nav-list">
+    <li class="nav-header">User Action</li>
+    <li class="active">
+      <%=link_to "Edit profile" ,edit_user_path(current_user) %>
+    </li>  
+    <li>
+      <%=link_to "choose category for email" ,choosecategories_categories_path %>
+    </li>
+    <li>
+      <%=link_to "place order" ,show_cart_product_orders_path %>
+    </li>
+</div>
+
+
+<div style="position:absolute;top:60px;left:45%;">
+  
+  <%= form_for :search, url: showproduct_users_path, method: :get, :class => "form-search" do |f| %>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"Search by category or name", :class=>"input-medium search-query text-field-height"%>
+    <%= f.submit "Search", :class => "btn" %>
+  <% end %>
+    
+  
+  <div id="catdata"> 
+  
+  </div>
+
+</div>
+
+<div style="position:absolute;left:30%;top:20%">
+  <% if @products.present? %>   
+  
+  
+  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+    
+   
+    <div style="display:inline-block;margin:auto;width:98%;background-color:grey;position:relative;left:0px;top:0px;border:5px solid black;">
+      <ul>
+        <% @products.each do |p| %>
+          <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;margin:5px;">
+              
+              <div style="position:relative;width:50%;left:0px;top:0px;float:left">
+                <img width='194' height='166' src="<%= p.pictures.first.image %>"><%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
+              </div>
+              <div style="position:relative;left:5%;right:5%;">
+                <%= p.name %><br/><%= p.price %><br/><%= p.description %>
+              </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>  
+<div style="position:relative;top:-18px;">
+<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+</div>    
+  
+
+  <% else%>
+  <span class="label label-default">No product found</span>
+  <% end %>
+</div>

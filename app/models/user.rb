@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   validates :user_type, presence: true
-  before_save :set_defaults
+  after_initialize:set_defaults
 
   private
+  
   def set_defaults
     self.status_of_shopkeeper = "pending"
   end

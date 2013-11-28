@@ -1,6 +1,6 @@
 
 <%= stylesheet_link_tag "custom" %>
- 
+ <%= will_paginate(@products, :renderer => WillPaginate::ActionView::LinkRenderer) %>
 <h3> products </h3>
 <div class="div-table">
   <% @products.each do |p| %>

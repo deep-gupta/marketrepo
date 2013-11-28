@@ -4,8 +4,8 @@ class ShopsController < ApplicationController
 
   end
   def new
-    #if current_user.status_of_shopkeeper == 'confirm'
-    # render text: "not created"
+    #if current_user.status_of_shopkeeper == 'pending'
+     #redirect_to users_url
     #end
   end
   
@@ -27,12 +27,13 @@ class ShopsController < ApplicationController
     
   end
   def search_result
-    
-    #if params[:page] == nil
-     # @product = Product.all.paginate(:page => 1, :per_page => 10)
+  
+    #if params[:page] == 
+      #@products = Product.where("name like ?", "%#{params[:search][:search]}%" and :shop_id => params[:shop_id] ).paginate(:page => 1, :per_page => 5)
     #else
-     # @product = Product.all.paginate(:page => params[:page], :per_page => 10)
+      @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => params[:page], :per_page => 8)
     #end
+  #end  
   end
   
 end

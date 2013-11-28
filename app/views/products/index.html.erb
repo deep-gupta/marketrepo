@@ -1,26 +1,37 @@
 
-
+<%#= will_paginate(@products, :renderer => WillPaginate::ActionView::LinkRenderer) %>
 <div style="text-align:center;">
 <h3> Available Product </h3>
 
 <% if @products.present? %>
 
-<div style="display:Products;width:50%;position:relative;left:25%;"> 
-<%= will_paginate(@products, :renderer => WillPaginate::ActionView::LinkRenderer) %>
-<div class="div-table">
-  <% @products.each do |p| %>
-  <div class="div-table-row">
-    <div class="div-table-col"><%= p.name%></div>
-    <div class="div-table-col"><%= p.price%></div>
-    <div class="div-table-col"><%= p.description%></div>
-  </div>
-  <% end %>
+
+  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+    
+   
+    <div style="display:inline-block;margin:auto;width:91%;background-color:grey;position:relative;left:0px;top:0px;border:5px solid black;">
+      <ul>
+        <% @products.each do |p| %>
+          <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;margin:5px;">
+              
+              <div style="position:relative;width:50%;left:0px;top:0px;float:left">
+                <a href="#"><img width='194' height='166' src="<%= p.pictures.first.image %>"><%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%></a>
+              </div>
+              <div style="position:relative;left:5%;right:5%;">
+                <%= p.name %><br/><%= p.price %><br/><%= p.description %>
+              </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>  
+<div style="position:relative;top:-18px;">
+<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 </div>
 
-</div>  
 <% else %>
- <h3> No product added to the shop till now</h3>
+  <h3> No product added to the shop till now</h3>
 <% end %>
+
 
 <br /><br />
 
@@ -34,6 +45,10 @@
 
 <div class="search">
   <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
+    
+    <div>
+      <%= hidden_field_tag "shop_id", params[:shop_id] %>    
+    </div>
     <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
     <%= f.submit "Search", :class => "btn" %>
   <% end %>
