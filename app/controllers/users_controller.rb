@@ -13,11 +13,14 @@ class UsersController < ApplicationController
   end
 
   def update
-  debugger
+  if params[:commit] == "Edit"
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
     @user.save
     redirect_to users_url
+  else
+    redirect_to users_url
+  end  
   end
 
 
@@ -34,7 +37,6 @@ class UsersController < ApplicationController
 
   def confirm_pending
     @users = User.where("user_type = ? and status_of_shopkeeper = ?","2","pending") 
-    #Model.where("column = ? or other_column = ?", value, other_value)
   end
 
   def pending
@@ -43,14 +45,11 @@ class UsersController < ApplicationController
     redirect_to confirm_pending_users_url
   end
   def showproduct
-  
-    
-    
+      
       if params[:page] == nil
         @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => 1, :per_page => 6)
       else
         @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => params[:page], :per_page => 6)
       end
     end
- 
-end
+ end

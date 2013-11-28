@@ -9,17 +9,21 @@ class MallsController < ApplicationController
   end
   
   def create
-    @tmall = Mall.where(name: params[:mall][:name])
-    if @tmall.present?
-      render text: "already exist "
-      return
-      render 'new'
+    if params[:commit] == "Submit"
+      @tmall = Mall.where(name: params[:mall][:name])
+      if @tmall.present?
+        render text: "already exist "
+        return
+        render 'new'
+      else
+        @mall = Mall.new(params[:mall])
+        @mall.city_id = params[:city][:city_id].to_i
+        @mall.save
+      end
+        redirect_to users_url
     else
-      @mall = Mall.new(params[:mall])
-      @mall.city_id = params[:city][:city_id].to_i
-      @mall.save
-    end
-    redirect_to users_url
+      redirect_to users_url
+    end  
   end
   def showstate
     @states = State.where(:country_id => params[:id])

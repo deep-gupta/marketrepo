@@ -5,9 +5,13 @@ class CategoriesController < ApplicationController
     
   end
   def create
-    c=Category.create(name: params[:category][:name])
-    c.save
-    render 'index'
+    if params[:commit] == "Submit"
+      c=Category.create(name: params[:category][:name])
+      c.save
+      render 'index'
+    else
+      redirect_to users_url
+    end  
   end
 
   def choosecategories

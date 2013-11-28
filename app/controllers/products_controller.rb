@@ -17,9 +17,12 @@ before_filter :authenticate_user!
   end
 
   def create
-    
+    if params[:commit] == "Submit"
     @product = Product.create(params[:product])
     @product.save
+    else
+    redirect_to shop_products_url(params[:shop_id])
+    end
   end
   
   def show

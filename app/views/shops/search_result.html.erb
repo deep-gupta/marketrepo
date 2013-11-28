@@ -1,7 +1,7 @@
 <div style="text-align:center;">
   <h3>Search Result </h3>
 </div>
-<div style="display:Products;width:100%;position:absolute;left:1%;top:25%;">
+<div style="display:Products;width:100%;position:absolute;left:1%;top:15%;">
 <% if @products.present? %>
   
   <%= will_paginate @products, renderer: BootstrapPagination::Rails %>

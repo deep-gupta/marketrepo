@@ -10,10 +10,15 @@ class ShopsController < ApplicationController
   end
   
   def create
+  if params[:commit] == "Submit"
     @shop = Shop.new(params[:shop])
     @shop.mall_id = params[:mall][:mall_id]
     @shop.user_id = current_user.id
     @shop.save
+    
+  else
+    redirect_to users_url
+  end
   end
 
   def show
