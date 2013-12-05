@@ -1,0 +1,10 @@
+development: &development
+    mode: test
+    login: 9gdLh6T
+    key: 67fu45xw6VP92LX1
+
+production:
+   <<: *development
+
+test:
+   <<: *development

@@ -1,29 +1,31 @@
-<div style="text-align:center;">
 
-  <h3>select the categories for the visitors and shopkeeper</h3>
-  <%= form_tag(savecategories_categories_path, method: "get") do %>
+<%= render "/users/visitors" %>
 
-    <% @category.each do |c| %>
+  <div class="rightbox">
+    <%= form_tag(savecategories_categories_path, method: "get") do %>
 
-      <label class="checkbox-inline">
-        <%= check_box_tag 'name_ids[]', c.id,:class => 'checkbox' %>
-        <%= label_tag(:name, c.name) %>
-      </label>
-    <% end %>
+      <% @category.each do |c| %>
+        
+        <div style="width:22%;height:10%;float:left;margin:5px;border:1px solid gray;">
+         
+          <label class="checkbox-inline">
+            <%= check_box_tag 'name_ids[]', c.id,:class => 'checkbox' %>
+            <%= label_tag(:name, c.name) %>
+          </label>
+        </div>  
+      <% end %>
+      
+      <br/>
+      <br/>
+      <div>
+        <%= submit_tag("submit", :class => "btn btn-primary") %>
+      </div>
     
-    <br/>
-    <br/>
-
-    <div>
-      <%= submit_tag("submit", :class => "btn btn-primary") %>
-    </div>
-  <%end%>
-
-  <div style="position:absolute;top:45px;right:20px;">
-    <%=link_to "Back" ,users_path %><br />
+    <%end%>
   </div>
+ 
+  
 
-</div>
 
 
 

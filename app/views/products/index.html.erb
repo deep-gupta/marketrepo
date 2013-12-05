@@ -1,47 +1,43 @@
+<%= render "/shops/shop" %>
 
-<%#= will_paginate(@products, :renderer => WillPaginate::ActionView::LinkRenderer) %>
 <div style="text-align:center;">
-<h3> Available Product </h3>
+  <h3></h3>
 
-<% if @products.present? %>
+  <% if @products.present? %>
 
-
-  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
-    
+    <div>
+      <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+    </div>    
    
-    <div style="display:inline-block;margin:auto;width:91%;background-color:grey;position:relative;left:0px;top:0px;border:5px solid black;">
+    <div style="display:inline-block;margin:auto;width:auto;max-width:69%;background-color:grey;position:relative;left:165px;top:5px;border:5px solid black;">
       <ul>
         <% @products.each do |p| %>
-          <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;margin:5px;">
+          <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;width:275px;margin:5px;">
               
               <div style="position:relative;width:50%;left:0px;top:0px;float:left">
-                <a href="#"><img width='194' height='166' src="<%= p.pictures.first.image %>"><%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%></a>
+                <img width='194' height='166' src="<%= p.pictures.first.image %>">
+                <% if user_signed_in? && current_user.user_type == "1" %>
+                <%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
+                <% end %>
               </div>
-              <div style="position:relative;left:5%;right:5%;">
-                <%= p.name %><br/><%= p.price %><br/><%= p.description %>
+              <div style="float:right;width:45%;text-align:left;word-wrap:break-word;">
+                Name:<%= p.name %><br/>Price:<%= p.price %><br/>Info:<%= p.description %>
               </div>
           </li>
         <% end %>
       </ul>
-    </div>  
-<div style="position:relative;top:-18px;">
-<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+    </div> 
+     
+  <div style="margin:35px auto 0;width:22%;">
+    <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+  </div>
+
+  <% else %>
+    <h3> No product added to the shop till now</h3>
+  <% end %><br/><br/>
 </div>
 
-<% else %>
-  <h3> No product added to the shop till now</h3>
-<% end %>
 
-
-<br /><br />
-
-<%=link_to "Add product" ,new_shop_product_path, :method => "get" %><br />
-
-</div>
-
-<div style="position:absolute;top:45px;right:20px;">
-  <%=link_to "Back" , shop_path(params[:shop_id]), :method => "get" %>
-</div>
 
 <div class="search">
   <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>

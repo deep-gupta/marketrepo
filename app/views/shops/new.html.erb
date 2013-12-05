@@ -1,56 +1,59 @@
 
-<h3>Create shop  </h3>
-<div style="background-color:gray;width:50%;height:74%;position:absolute;left:25%;border:5px solid black;">
+
+<%= render "/users/shopkeeper"%>
+<div class="rightbox">
   <%= form_for :shop, url: shops_path, method: :post, :class => "form-horizontal" do |f| %>
 
     
     <div class="form-group"> 
-      <label class="col-sm-2 control-label">Country</label>
+      <label class="col-sm-2 control-label">Country<span style="color:red">*</span></label>
       <div class="col-sm-10">
         <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },
-        { :include_blank => true, :prompt => 'Select' }, {:id => 'cou'})  %>
+        { :prompt => 'Select' }, {:id => 'cou'})  %>
       </div>
     </div>
       
     
 
     <div class="form-group"> 
-      <label class="col-sm-2 control-label">State</label>
+      <label class="col-sm-2 control-label">State<span style="color:red">*</span></label>
       <div class="col-sm-10">
-        <%= select("state", "state_id",{},{ :include_blank => true , :prompt => 'Select'}, {:id => 'sta'}) %>
+        <%= select("state", "state_id",{},{:prompt => 'Select'}, {:id => 'sta'}) %>
       </div>
     </div>
   
     <div class="form-group"> 
-      <label class="col-sm-2 control-label">City</label>
+      <label class="col-sm-2 control-label">City<span style="color:red">*</span></label>
       <div class="col-sm-10">
-        <%= select("city", "city_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'cit'}) %>
+        <%= select("city", "city_id",{},{:prompt => 'Select'},  {:id => 'cit'}) %>
       </div>
     </div>
 
     <div class="form-group"> 
-      <label class="col-sm-2 control-label">Mall name</label>
+      <label class="col-sm-2 control-label">Mall name<span style="color:red">*</span></label>
       <div class="col-sm-10">
-        <%= select("mall", "mall_id",{},{ :include_blank => true ,:prompt => 'Select'},  {:id => 'mal'}) %>
+        <%= select("mall", "mall_id",{},{:prompt => 'Select'},  {:id => 'mal'}) %>
       </div>
     </div>
 
 
     <div class="form-group"> 
-      <label class="col-sm-2 control-label">Shop name</label>
+      <label class="col-sm-2 control-label">Shop name<span style="color:red">*</span></label>
       <div class="col-sm-10">
-        <%= f.text_field :name, :autofocus => true, :placeholder => "shop name",:class => "text-field-height" %>
+        <%= f.text_field :name, :autofocus => true, :placeholder => "shop name",:class => "text-field-height",:id => 'name' %>
       </div>
     </div>
 
     
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit "Submit", :class => "btn btn-primary" %>
+        <%= f.submit "Submit", :class => "btn btn-primary",:onclick => "return validateForm();" %>
         <%= f.button "Cancle", :class => "btn btn-primary" %>
       </div>
     </div>
   <% end %>
+  
+  <div class="warning" id="show_msg"></div>
 
 </div>
 
@@ -77,9 +80,23 @@
   });
 });
   
+function validateForm()
+{
+
+  var temp=true;
+  var cou = $("#cou").val();
+  var sta = $("#sta").val();
+  var cit = $("#cit").val();
+  var mal = $("#mal").val();
+  var name = $("#name").val();
+  
+  if(cou == "" || sta == "" || cit == "" || mal == "" || name == "")
+  {
+    $("#show_msg").text("Fill all necessary (*) fields");
+    temp=false;
+  }
+  return temp;
+}
 
 </script>
 
-<div style="position:absolute;top:45px;right:20px;">
-  <%=link_to "Back" ,users_path %>
-</div>

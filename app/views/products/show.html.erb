@@ -1,24 +1,22 @@
 
 <div style="position:fixed;top:60px;left:25%;right:25%">
-<table class="table table-bordered">
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><%= @product.name %></td>
-    <td><%= @product.price %></td>
-    <td><%= @product.description %></td>
-  </tr>
-</table>
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><%= @product.name %></td>
+      <td><%= @product.price %></td>
+      <td><%= @product.description %></td>
+    </tr>
+  </table>
 </div>  
+
 <div style="position:absolute;top:30%;left:40%;background-color:white;border:2px solid black;">
-<img src="<%= @product.pictures.first.image %>" height="200" width="200">
+  <img src="<%= @product.pictures.first.image %>" height="200" width="200">
 </div>
-  
-
-
 <div style="position:fixed;top:45px;right:20px;">
   <%= link_to "back", shop_products_path(params[:shop_id]) %>
 </div>

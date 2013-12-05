@@ -1,9 +1,10 @@
 
-<div style="position:absolute;top:10%;left:2%;">
-<h1>Shop created</h1>
+<div style="position:relative;top:5%;left:2%;">
+<h3>Shop created</h3>
 </div>
 
+<%#= link_to "Add products", new_shop_product_path(params[:shop_id])%>
 <div style="position:fixed;top:45px;right:20px;">
-  <%= link_to "back", users_path %>
+  <%= link_to "back", shop_products_path %>
 </div>
 

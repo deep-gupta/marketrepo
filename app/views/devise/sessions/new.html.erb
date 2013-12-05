@@ -1,49 +1,45 @@
+
 <div class="signin_content">
-
-
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <%= f.email_field :email, :autofocus => true, :placeholder =>"Email Address",:class => "text-field-height" %>
+        </div>
+    </div>
   
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Email</label>
-          <div class="col-sm-10">
-            <%= f.email_field :email, :autofocus => true, :placeholder =>"Email Address",:class => "text-field-height" %>
-          </div>
-      </div>
-  
-
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-    <%= f.password_field :password,:placeholder => "password",:class => "text-field-height" %>
-  </div>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-     <div class="form-group">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Password</label>
       <div class="col-sm-10">
-      
-          <%= f.check_box :remember_me %>Remember me
+        <%= f.password_field :password,:placeholder => "password",:class => "text-field-height" %>
+      </div>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <%= f.check_box :remember_me %> Remember me
         </div>
       </div>
     <% end -%>
     
-    
+    <br/>
 
-  <div>
-    <%= f.submit "Sign in",:class => "btn btn-primary" %>
-  </div>
+    <div>
+      <%= f.submit "Sign in",:class => "btn btn-primary" %>
+    </div>
   <% end %><br />
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
 </div>
 
 
-  <div class="search">
-    <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
-      <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
-      <%= f.submit "Search", :class => "btn" %>
-    <% end %>
-  </div>
+<div class="search">
+  <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
+    <%= f.submit "Search", :class => "btn" %>
+  <% end %>
+</div>
 
 
 <div class="slider_box">
@@ -57,8 +53,8 @@
 
 <script>
 
-$(document).ready(function(){
-  $('.bxslider').bxSlider();
-});
+  $(document).ready(function(){
+    $('.bxslider').bxSlider();
+  });
 
 </script>

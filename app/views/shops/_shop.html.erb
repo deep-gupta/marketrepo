@@ -1,0 +1,29 @@
+<div style="position:absolute;top:40px;"> 
+    <div class="well" style="width: 300px;height:500px; padding: 8px 0;">
+      <ul class="nav nav-list">
+        
+        <li class="nav-header">
+          <%= Shop.find(params[:shop_id]).name %>
+        </li>
+        <li class="active">
+          <%=link_to "show products" ,shop_products_path(params[:shop_id]) %>
+        </li>
+        <li>
+          <%=link_to "Generate Offer", new_shop_offer_path(params[:shop_id]) %>
+        </li>
+        <li>
+          <%=link_to "Add product" ,new_shop_product_path %>
+        </li>
+        
+      
+      <ul>
+      <li class="divider"></li>
+        </ul>
+        <li>Help</li>
+        </ul>
+    </div>        
+</div>
+
+<div class="back">
+  <%= link_to "Back",users_path %>
+</div>

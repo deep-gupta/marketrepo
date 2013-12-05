@@ -1,0 +1,19 @@
+<div style="margin:0 auto;text-align:center;">
+<%= form_for @payment, :url => payments_url do |f|%>
+  <%=f.label:Amount%>
+  <%= f.text_field :amount%>
+  <%= fields_for :creditcard, @creditcard do |cc|%>
+    <%=cc.label:Name%>
+    <%= cc.text_field :name%>
+    <%=cc.label:'Card number'%>
+    <%= cc.text_field :number%>
+    <%=cc.label:'Expiery Date'%>
+    <%= cc.select :month, Date::ABBR_MONTHNAMES.compact.each_with_index.collect{|m, i| [m, i+1]}, {:prompt => 'Select'}%><br/>
+    <%= cc.select :year, Array.new(15){|i| Date.current.year+i}, {:prompt => 'Select'}%>
+    <%=cc.label:'Security value(CVV)'%>
+    <%= cc.text_field :verification_value%>
+    <%end%>
+    <br/>
+  <%= f.submit 'Pay'%>
+<% end%>
+</div>

@@ -1,7 +1,7 @@
 
-<h3>Welcome <%= current_user.first_name %></h3>
-<div style="position:fixed;top:50px;bottom:50px;width:30%;">
-<div class="well" style="max-width: 340px;height:500px; padding: 8px 0;">
+
+<div style="top:50px;bottom:50px;width:30%;">
+<div class="well navp">
     <ul class="nav nav-list">
       
       <li class="nav-header">Shopkeeper Action</li>
@@ -14,7 +14,7 @@
         <li class="nav-header">shops</li>
         <% if current_user.shops.present? %>
           <% current_user.shops.each do |s|%>
-            <li><%=link_to s.name ,shop_path(s.id) %></li>
+            <li><%=link_to s.name ,shop_products_path(s.id) %></li>
           <% end%>
         
         <% end %>

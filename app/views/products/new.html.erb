@@ -1,7 +1,7 @@
 
-<h3> Create product for shop </h3>
+<%= render "/shops/shop"%>
 
-<div style="background-color:gray;width:50%;height:74%;position:absolute;left:25%;border:5px solid black;">
+<div style="background-color:rgb(245,245,245);width:50%;height:450px;position:relative;left:37%;top:40px;border:5px solid black;">
 
   <%= form_for @product, url: shop_products_path, method: :post, :class => "form-horizontal" do |f| %>
 
@@ -11,24 +11,24 @@
 
 
       <div class="form-group"> 
-        <label class="col-sm-2 control-label">Name</label>
+        <label class="col-sm-2 control-label">Name<span style="color:red">*</span></label>
         <div class="col-sm-10">
-          <%= f.text_field :name, :autofocus => true, :placeholder =>"Product Name",:class => "text-field-height" %>
+          <%= f.text_field :name, :autofocus => true, :placeholder =>"Product Name",:class => "text-field-height",:id => "name"%>
         </div>
       </div><br />
 
 
       <div class="form-group"> 
-        <label class="col-sm-2 control-label">Category</label>
+        <label class="col-sm-2 control-label">Category<span style="color:red">*</span></label>
         <div class="col-sm-10">
-          <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+          <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true,:id =>"cate" %>
         </div>
       </div>
 
       <div class="form-group"> 
-        <label class="col-sm-2 control-label">Price</label>
+        <label class="col-sm-2 control-label">Price<span style="color:red">*</span></label>
         <div class="col-sm-10">
-          <%= f.text_field :price, :placeholder => "price",:class => "text-field-height" %>
+          <%= f.text_field :price, :placeholder => "price",:class => "text-field-height",:id =>"pric" %>
         </div>
       </div>
 
@@ -40,25 +40,52 @@
       </div>
     
       <div class="form-group"> 
-        <label class="col-sm-2 control-label">Picture</label>
+        <label class="col-sm-2 control-label">Picture<span style="color:red">*</span></label>
         <div class="col-sm-10">
           <%= f.fields_for :pictures do |pic| %>
-          <%= pic.file_field :image %>
+          <%= pic.file_field :image ,:id => "imag"%>
           <% end %>
         </div>
       </div>
       
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit "Submit", :class => "btn btn-primary" %>
+          <%= f.submit "Submit", :class => "btn btn-primary",:onclick => "return validateForm();" %>
           <%= f.button "Cancle", :class => "btn btn-primary" %>
         </div>
       </div>
+      <div class="warning" id="show_msg"></div>
   <% end %>
 </div>
 
 
-
-<div style="position:absolute;top:45px;right:20px;">
-<%=link_to "Back" , shop_products_path(params[:shop_id]), :method => "get" %>
+<div class="search">
+  <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
+    
+    <div>
+      <%= hidden_field_tag "shop_id", params[:shop_id] %>    
+    </div>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
+    <%= f.submit "Search", :class => "btn" %>
+  <% end %>
 </div>
+
+<script>
+  
+  function validateForm()
+  {
+    
+    var temp=true;
+    
+    var name = $("#name").val();
+    var cate = $("#cate").val();
+    var pric = $("#pric").val();
+    var imag = $("#imag").val();
+    if(name=="" || cate=="" || pric=="" || imag=="")
+    {
+      $("#show_msg").text("Fill all necessary(*) fields");
+      temp=false;
+    }
+    return temp;
+  }
+</script>

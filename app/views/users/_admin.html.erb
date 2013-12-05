@@ -1,30 +1,34 @@
-<h3>Welcome <%= current_user.first_name %></h3>
-
-<div class="well" style="max-width: 340px;height:500px; padding: 8px 0;">
+<div class="well navp">
     <ul class="nav nav-list">
       
       <li class="nav-header">Admin section</li>
 
       <li class="active">
-        <%=link_to "confirm pending request", confirm_pending_users_path,:method =>"get" %>
+        <%=link_to "confirm pending request", confirm_pending_users_path%>
       </li>
 
       <li>
-        <%=link_to "List of all malls", malls_path,:method =>"get" %>
+        <%=link_to "List of all malls", malls_path%>
       </li>
       
       <li>
-        <%=link_to "show all users of the site", displayallusers_users_path, :method => "get" %>
+        <%=link_to "show all users of the site", displayallusers_users_path%>
       </li>
       
       <li>
-        <%=link_to "Create mall for shopkeepers",new_mall_path, :method => "get" %>
+        <%=link_to "Create mall for shopkeepers",new_mall_path%>
       </li>
       
       <li>
-        <%=link_to "Add items to the Category table" ,categories_path, :method => "get" %>
+        <%=link_to "Add items to the Category table" ,categories_path%>
       </li>
-
+      
+      <li>
+        <%=link_to "Show all category" ,show_all_category_users_path%>
+      </li>
     </ul>
 </div>
+
+<div class="alert alert-success" id="ch"><%= flash[:notice]%></div>
+
 

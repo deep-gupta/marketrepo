@@ -1,48 +1,69 @@
+<%#= render "/shops/shop" %>
 <div style="text-align:center;">
   <h3>Search Result </h3>
 </div>
+
+
 <div style="display:Products;width:100%;position:absolute;left:1%;top:15%;">
-<% if @products.present? %>
-  
+  <% if @products.present? %>
+  <div style="text-align:center">
   <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
-    
-   
-    <div style="display:inline-block;margin:auto;width:95%;background-color:grey;position:relative;left:0px;top:0px;border:5px solid black;">
-      <ul>
-        <% @products.each do |p| %>
-          <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;margin:5px;">
-              
-              <div style="position:relative;width:50%;left:0px;top:0px;float:left">
-                <img width='194' height='166' src="<%= p.pictures.first.image %>"><%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
-              </div>
-              <div style="position:relative;left:5%;right:5%;">
-                <%= p.name %><br/><%= p.price %><br/><%= p.description %>
-              </div>
-          </li>
-        <% end %>
-      </ul>
+  </div>
+    <div style="margin:0 auto;position:relative;top:15px;">  
+     
+      <div style="display:inline-block;margin:0 auto;width:auto;max-width:94%;background-color:grey;position:relative;left:0px;top:0px;border:5px solid black;">
+        <ul>
+          <% @products.each do |p| %>
+            
+            <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;width:275px;margin:5px;">
+                
+                <div style="position:relative;width:50%;left:0px;top:0px;float:left">
+                  <img width='194' height='166' src="<%= p.pictures.first.image %>">
+                  <% if user_signed_in? && current_user.user_type == "1" %>
+                    <%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
+                  <% end %>
+                </div>
+                <div style="float:right;width:45%;text-align:left;word-wrap:break-word;">
+                  Name:<%= p.name %><br/>Price:<%= p.price %><br/>Info:<%= p.description %>
+                </div>
+            </li>
+          
+          <% end %>
+        </ul>
+      </div>  
+      <div style="position:relative;top:-18px;text-align:center;">
+        <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+      </div>
     </div>  
-<div style="position:relative;top:-18px;">
-  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
-</div>
   
-<% else %>
- <%= flash[:notice] = "No record found" %>
- <%#= redirect_to shop_products_url(params[:shop_id]) %>
-<% end%>  
+  <% else %>
+    <%= flash[:notice] = "No record found" %>
+    <%#= redirect_to shop_products_url(params[:shop_id]) %>
+  <% end%>  
 </div>
 
 
   
 
 <% if user_signed_in?%>
-<div style="position:absolute;top:45px;right:20px;">
-<%=link_to "Back" ,shop_products_path(params[:shop_id]) %>
-</div>
+
+  <div class="back">
+    <% if current_user.user_type == "2"%>
+      <%=link_to "Back" ,shop_products_path(params[:shop_id]) %>
+    <% end %>
+
+    <% if current_user.user_type == nil%>
+      <%=link_to "Back" ,show_all_category_users_path %>
+    <% end %>
+  </div>
+
 <% else %>
-<div style="position:absolute;top:45px;right:20px;">
-<%=link_to "Back" ,users_path %>
-</div>
+  <div class="back">
+    <%=link_to "Back" ,users_path %>
+  </div>
+  <div class="signout" style="top:-90px;">
+    <%= link_to "Sign in", users_path %>
+  </div>
 <% end %>
 
 
@@ -56,3 +77,6 @@
     <%= f.submit "Search", :class => "btn" %>
   <% end %>
 </div
+
+<div class="footer">
+</div>
