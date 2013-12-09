@@ -6,11 +6,10 @@ Market::Application.routes.draw do
 
   resources :users do
     collection do
-      get 'displayallusers'
+      get 'display_all_users'
       get 'confirm_pending'
       get 'showproduct'
       get 'show_cart'
-      get 'show_all_category'
     end          
     member do
       get 'pending'
@@ -21,8 +20,8 @@ Market::Application.routes.draw do
   
   resources :categories do
     collection do
-      get 'choosecategories'
-      get 'savecategories'
+      get 'choose_categories'
+      get 'save_categories'
     end
     member do
       get 'show_product'
@@ -31,8 +30,8 @@ Market::Application.routes.draw do
 
   resources :malls do
     collection do
-      get 'showstate'
-      get 'showcity'
+      get 'show_state'
+      get 'show_city'
     end
   end
         
@@ -40,20 +39,18 @@ Market::Application.routes.draw do
     resources :products, :offers
       collection do
         get 'search_result'
-        get 'showmall'
+        get 'show_mall'
       end
   end
 
   resources :carts do
     member do
-      get 'addtocart'
-      get 'remove_from_cart'
+      get 'add_to_cart'
     end
   end
 
   resources :orders do
     collection do
-      get 'show_cart_product'
       get 'place_order'
     end
   end

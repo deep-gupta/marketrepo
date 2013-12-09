@@ -33,7 +33,7 @@ gem 'bxslider-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'activemerchant', :require => 'active_merchant'
-
+gem "cancan"
 gem 'will_paginate-bootstrap'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

@@ -1,5 +1,3 @@
-
-
 <div class="well navp">
   <ul class="nav nav-list">
     <li class="nav-header">User Action</li>
@@ -7,28 +5,19 @@
       <%=link_to "Edit profile" ,edit_user_path(current_user), :method => "get" %>
     </li>  
     <li>
-      <%=link_to "choose category for email" ,choosecategories_categories_path, :method => "get" %>
+      <%=link_to "choose category for email" ,choose_categories_categories_path, :method => "get" %>
     </li>
     <li>
-      <%=link_to "Show cart" ,show_cart_product_orders_path, :method => "get" %>
+      <%=link_to "Show cart" ,carts_path, :method => "get" %>
     </li>
   </ul>  
 </div>
 
 
-<div style="position:absolute;top:60px;left:45%;">
+<div class="v_searchbox">
   <%= form_for :search, url: showproduct_users_path, method: :get, :class => "form-search" do |f| %>
     <%= f.text_field :search, :autofocus => true, :placeholder =>"Search by category or name", :class=>"input-medium search-query text-field-height"%>
     <%= f.submit "Search", :class => "btn" %>
   <% end %>
 </div>
 
-<script type="text/javascript">
- 
- $('#cat').change(function() {
-  var cid = $(this).val();
-  $.get( "/users/showproduct",{ id: cid }, function( data ) {
-    $('#catdata').html(data);
-  });
-});
- </script>

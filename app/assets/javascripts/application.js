@@ -15,4 +15,4 @@
 //= require twitter/bootstrap
 //= require bxslider
 //= require_tree .
-
+//= require app

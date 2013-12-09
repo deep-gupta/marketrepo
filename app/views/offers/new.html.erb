@@ -1,14 +1,14 @@
 <%= render "/shops/shop"%>
     
     
-<div style="background-color:rgb(245,245,245);width:50%;height:400px;position:relative;left:500px;top:50px;border:5px solid black;">
+<div class="offer_new">
   <%= form_for @offer, url: shop_offers_path, method: :post, :class => "form-horizontal" do |f| %>
     <div>
       <%= f.hidden_field :shop_id, :value => params[:shop_id] %>
     </div>
     
     <div class="form-group">
-      <label class="col-sm-2 control-label">Start date<span style="color:red">*</span></label>
+      <label class="col-sm-2 control-label">Start date<span class="astrik">*</span></label>
         <div class="col-sm-10">
           <%= f.text_field :from_date, :type => "date", :placeholder =>"Start Date",:class => "text-field-height",:id =>"sdate" %>
         </div>
@@ -22,14 +22,14 @@
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2 control-label">Category<span style="color:red">*</span></label>
+      <label class="col-sm-2 control-label">Category<span class="astrik">*</span></label>
       <div class="col-sm-10">
         <%=select_tag "category", options_from_collection_for_select(Category.all, "id", "name"), prompt: "Select category",:id => "category" %>
       </div>
     </div>
       
     <div class="form-group">
-      <label class="col-sm-2 control-label">Message<span style="color:red">*</span></label>
+      <label class="col-sm-2 control-label">Message<span class="astrik">*</span></label>
       <div class="col-sm-10">
         <%= f.text_area :message, :size =>"5x5",:placeholder => "Something about the offer",:id => "message" %>
       </div>
@@ -37,8 +37,7 @@
       
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit "Submit", :class => "btn btn-primary", :onclick => "return validateForm();" %>
-        <%= f.button "Cancle", :class => "btn btn-primary" %>
+        <%= f.submit "Submit", :class => "btn btn-primary", :onclick => "return validateFormoffer();" %>
       </div>
     </div>
       
@@ -57,19 +56,3 @@
   <% end %>
 </div>
 
-<script>
-
-  function validateForm()
-  {
-    var temp=true; 
-    var sdate = $("#sdate").val();
-    var category = $("#category").val();
-    var message = $("#message").val();
-    if(sdate == "" || category == "" || message == "")
-    {
-      $("#show_msg").text("Fill all necessary (*) fields");
-      temp=false;
-    }
-    return temp;
-  }
-</script>

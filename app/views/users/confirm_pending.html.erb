@@ -1,33 +1,28 @@
 <%= render "users/admin" %>
 <div class="panelbox">
-  
-<div class="panel panel-default" style="position:relative;top:30px;">
-  <div class="panel-heading"><h2>Confirm Pending</h2></div>
-
-  <% if @users.present? %>
-    <div class="panel-body">
-  
-      <table  class="table table-bordered table table-striped">
-        <tr>
-         <th>email</th>
-         <th>confirm</th>
-         <th>discard</th>
-        </tr>
-        <% @users.each do |u|%>
-        <tr>
-          <td><%= u.email%></td>
-          <td><%=link_to "confirm", pending_user_path(u.id), :method => "get" %><br /></td>
-          <td><%=link_to "discard" ,user_path(u.id), :method => "delete" %><br /></td>  
-        </tr>
-        <% end%>
-      </table>
-    </div>  
+  <div class="panel panel-default p_t_30" >
+    <div class="panel-heading"><h2>Confirm Pending</h2></div>
+      <% if @users.present? %>
+      <div class="panel-body">
     
-  <%else%>
-      <h3> No pending request </h3>
-  <% end %>
-</div>
-</div>
-<div style="position:absolute;top:45px;right:20px;">
-  <%=link_to "Back" , users_path %>
+        <table  class="table table-bordered table table-striped">
+          <tr>
+           <th>email</th>
+           <th>confirm</th>
+           <th>discard</th>
+          </tr>
+          <% @users.each do |u|%>
+          <tr>
+            <td><%= u.email%></td>
+            <td><%=link_to "confirm", pending_user_path(u.id), :method => "get" %><br /></td>
+            <td><%=link_to "discard" ,user_path(u.id), :method => "delete" %><br /></td>  
+          </tr>
+          <% end%>
+        </table>
+      </div>  
+      
+    <%else%>
+        <h3> No pending request </h3>
+    <% end %>
+  </div>
 </div>

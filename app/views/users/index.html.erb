@@ -1,11 +1,8 @@
 
 <% if current_user.user_type == '1' %>
-<%= render partial: 'visitors' %>
-
+  <%= render partial: 'visitors' %>
 <% elsif current_user.user_type == '2' %>
-<%= render partial: 'shopkeeper' %>
-
+  <%= render partial: 'shopkeeper' %>
 <% else %>
-<%= render partial: "admin" %>
-
+  <%= render partial: "admin" %>
 <% end %> 

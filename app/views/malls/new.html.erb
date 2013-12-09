@@ -1,94 +1,62 @@
 <%= render "users/admin" %>
-<div style="mergin:50px";>
-  <div class="rightbox">
+  <div class="rightbox_mall">
     <%= form_for :mall, url:malls_path, method: :post, :class => "form-horizontal" do |f| %>
 
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Country<span style="color:red">*</span></label>
-        <div class="col-sm-10">
-            <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select' }, {:id => 'cou'}) %>
-        </div>
-        
+    <% if @mall.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @mall.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
       </div>
-
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">State<span style="color:red">*</span></label>
-        <div class="col-sm-10">
-          <%= select("state", "state_id",{},{ :prompt => 'Select'}, {:id => 'sta'}) %>
-        </div>
-        
-      </div>
-
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">City<span style="color:red">*</span></label>
-        <div class="col-sm-10">
-          <%= select("city", "city_id",{},{:prompt => 'Select'},  {:id => 'cit'}) %>
-     
-      </div>
-        
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Name<span style="color:red">*</span></label>
-        <div class="col-sm-10">
-          <%= f.text_field :name, :autofocus => true, :placeholder => "Mall Name",:class => "text-field-height",:id => "name" %>
-        </div>
-        
-      </div>
-
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Address</label>
-        <div class="col-sm-10">
-          <%= f.text_field :address, :placeholder => "Mall Address",:class => "text-field-height" %>
-        </div>
-      </div>
-
+    <% end %>
       
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit "Submit", :class => "btn btn-primary", :onclick => "return validateForm();" %>
-          <%= f.button "Cancle", :class => "btn btn-primary" %>
-        </div>
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Country<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+          <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select' }, {:id => 'cou'}) %>
       </div>
+      
+    </div>
+
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">State<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= select("state", "state_id",{},{ :prompt => 'Select'}, {:id => 'sta'}) %>
+      </div>
+      
+    </div>
+
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">City<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= select("city", "city_id",{},{:prompt => 'Select'},  {:id => 'cit'}) %>
+   
+    </div>
+      
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Name<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= f.text_field :name, :autofocus => true, :placeholder => "Mall Name",:class => "text-field-height",:id => "name" %>
+      </div>
+      
+    </div>
+
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Address</label>
+      <div class="col-sm-10">
+        <%= f.text_field :address, :placeholder => "Mall Address",:class => "text-field-height" %>
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Submit", :class => "btn btn-primary", :onclick => "return validateFormmall();" %>
+      </div>
+    </div>
       <% end %>
     <div class="warning" id="show_msg"></div>  
     </div>    
   </div>
-</div>
-
-
-<script type="text/javascript">
-$('#cou').change(function() {
-    var cid = $(this).val();
-    $.get( "/malls/showstate",{ id: cid}, function( data ) {
-    $('#sta').html(data);
-    });
-  });
-
- $('#sta').change(function() {
-    var sid = $(this).val();
-    $.get( "/malls/showcity",{ id: sid}, function( data ) {
-    $('#cit').html(data);
-    });
-  });
-  
-
-function validateForm()
-{
-
-  var temp=true;
-
-  var cou = $("#cou").val();
-  var sta = $("#sta").val();
-  var cit = $("#cit").val();
-  var name = $("#name").val();
-  if(cou=="" || sta=="" || cit=="" || name=="")
-  {
-    $("#show_msg").text("Fill all necessary(*) fields");
-    temp=false;
-  }
-  
-  return temp;
-}
-
-
-</script>
-

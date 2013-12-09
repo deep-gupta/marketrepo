@@ -1,37 +1,19 @@
-
-<%= render "users/admin" %>
-<div class="rightbox">
-  <div>
-      <%= form_for :category, :class => "form-horizontal" do |f| %>
-        <div class="form-group"> 
-          <label class="col-sm-2 control-label">Name<span style="color:red">*</span></label>
-          <div class="col-sm-10">
-            <%= f.text_field :name, :autofocus => true, :placeholder => "Category Name",:class => "text-field-height",:id => "name" %>
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <%= f.submit "Submit", :class => "btn btn-primary", :onclick => "return validateForm();" %>
-              <%= f.button "Cancle", :class => "btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
-  </div>    
+<%=render "/users/admin"%>
+<div class="panelbox">
+  <table class="table table-bordered">
+    <tr>
+      <th> Name </th>
+      <th> Show all items</th>
+    </tr>
+    
+    <% @category.each do |c|%>
+      <tr>
+        <td><%= c.name%></td>
+        <td><%= link_to "Show all products", show_product_category_path(c.id) %></td>
+      </tr>    
+    <% end %>
+  </table>
 </div>
-
-<script>
-  function validateForm()
-  {
-    var x = $("#name").val();
-    if(x=="")
-    {
-    alert("category can't be empty");
-    return false;
-    }
-  }
-</script>
-
 
 
 

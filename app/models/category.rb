@@ -1,11 +1,7 @@
 class Category < ActiveRecord::Base
   attr_accessible :name
-  after_save :display
-  validates :name, :presence => true
+  validates :name, :presence => true, :uniqueness => {:message => 'Category already exists'}
 
-  def display
-    puts"successfully saved"
-  end
    
   has_many :user_categories
   has_many :users, through: :user_categories

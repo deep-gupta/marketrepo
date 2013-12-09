@@ -1,10 +1,9 @@
-
 <% if current_user.user_type == "1" %>
-<%= render "/users/visitors"%>
+  <%= render "/users/visitors"%>
 <% end %>
 
 <% if current_user.user_type == "2" %>
-<%= render "/users/shopkeeper"%>
+  <%= render "/users/shopkeeper"%>
 <% end %>
 
 <div class="rightbox">
@@ -12,76 +11,50 @@
     
     
     <div class="form-group">
-      <label class="col-sm-2 control-label">Firstname<span style="color:red">*</span></label>
+      <label class="col-sm-2 control-label">Firstname<span class="astrik">*</span></label>
       <div class="col-sm-10">
         <%= f.text_field :first_name, :autofocus => true, :placeholder =>"First Name",:class => "text-field-height",:id =>"fname" %>
       </div>
     </div>
-    
     <div class="form-group">
-     <label class="col-sm-2 control-label">Lastname<span style="color:red">*</span></label>   
+     <label class="col-sm-2 control-label">Lastname<span class="astrik">*</span></label>   
       <div class="col-sm-10">
         <%= f.text_field :last_name, :placeholder => "Lirst Name",:class => "text-field-height",:id => "lname" %>
       </div>
     </div>
-    
     <div class="form-group">
-      <label class="col-sm-2 control-label">Dateofbirth<span style="color:red">*</span></label>
+      <label class="col-sm-2 control-label">Dateofbirth<span class="astrik">*</span></label>
       <div class="col-sm-10">
         <%= f.text_field :date_of_birth, :type => "date", :placeholder =>"30/05/1989",:class => "text-field-height",:id =>"dob"%>
       </div>
     </div>
-    
     <div class="form-group">
       <label class="col-sm-2 control-label">Gender</label>
       <div class="col-sm-10">
         <%= f.select(:gender, options_for_select([['Male', 1], ['Female', 2]], 1))%>
       </div>
     </div>
-    
     <div class="form-group">
       <label class="col-sm-2 control-label">Contact no.</label>
       <div class="col-sm-10">
         <%= f.text_field :phone_no, :type => "tel",:class => "text-field-height" %>
       </div>
     </div>
-    
     <div class="form-group">
       <label class="col-sm-2 control-label">Picture </label>
       <div class="col-sm-10">
         <%= f.fields_for :pictures do |p|%>
           <%= p.file_field :image %>
         <% end %>
-       
       </div>
     </div> 
-    
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit "Edit", :class => "btn btn-primary", :onclick => "return validateForm();" %>
-        <%= f.button "cancle", :class => "btn btn-primary" %>
+        <%= f.submit "Edit", :class => "btn btn-primary", :onclick => "return validateFormuser();" %>
       </div>
     </div>
-      
   <% end %>
   <div class="warning" id="msg"></div>
 </div>
 
 
-<script>
-function validateForm()
-{
-var temp=true;
-var fname = $("#fname").val();
-var lname = $("#lname").val();
-var dob = $("#dob").val();  
-  if(fname=="" || lname=="" || dob=="")
-  {
-    temp=false;
-    $("#msg").text("Fill all necessary (*) fields");
-  }
-  
-  return temp;
-
-}
-</script>

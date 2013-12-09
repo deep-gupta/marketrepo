@@ -1,16 +1,21 @@
 class CartsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   
-  def addtocart
+  def index
+    #visitors
+    @carts = Cart.where(:user_id => current_user.id)
+  end
+  
+  def add_to_cart
+    #visitors
     @carts = Cart.create(:user_id => current_user.id, :product_id => params[:id]) 
+  
   end
   
   def destroy
+    #visitors
     Cart.find(params[:id]).delete
-    redirect_to show_cart_product_orders_url
-  end
-  
-  def remove_from_cart
-    Cart.find(params[:id]).delete
+    redirect_to carts_path
   end
 end

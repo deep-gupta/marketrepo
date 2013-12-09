@@ -1,42 +1,33 @@
 class MallsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   
   def index
-    @mall = Mall.all
+    @malls = Mall.all
   end
 
   def new
+    @mall = Mall.new
   end
   
   def create
-    if params[:commit] == "Submit"
-      if current_user.user_type == nil
-        @tmall = Mall.where(name: params[:mall][:name])
-        if @tmall.present?
-          render text: "already exist "
-          return
-          render 'new'
-        else
-          @mall = Mall.new(params[:mall])
-          @mall.city_id = params[:city][:city_id].to_i
-          @mall.save
-        end
-      end  
-        redirect_to users_path, :flash => {:notice => "Successfully cfreated"}
-    
+    @mall = Mall.new(params[:mall])
+    @mall.city_id = params[:city][:city_id].to_i
+    @mall.save
+    if @mall.save
+      redirect_to users_path, :flash => {:notice => "Successfully created"}
     else
-      
-      redirect_to users_path, :flash => {:notice => "Cancle creation"}    
-    end  
+      render 'new'
+    end
   end
   
-  def showstate
+  def show_state
     @states = State.where(:country_id => params[:id])
-    render :partial => 'showstate'
+    render :partial => 'show_state'
   end
   
-  def showcity
+  def show_city
     @cities = City.where(:state_id => params[:id])
-    render :partial => 'showcity'
+    render :partial => 'show_city'
   end
 end

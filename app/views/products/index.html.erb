@@ -1,6 +1,6 @@
 <%= render "/shops/shop" %>
 
-<div style="text-align:center;">
+<div class="center">
   <h3></h3>
 
   <% if @products.present? %>
@@ -9,26 +9,30 @@
       <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
     </div>    
    
-    <div style="display:inline-block;margin:auto;width:auto;max-width:69%;background-color:grey;position:relative;left:165px;top:5px;border:5px solid black;">
+    <div class="p_index">
       <ul>
         <% @products.each do |p| %>
-          <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;width:275px;margin:5px;">
+          <li class="thumbnail p_index_thumbnail">
               
-              <div style="position:relative;width:50%;left:0px;top:0px;float:left">
+              <div class="p_index_thumbnail_left">
                 <img width='194' height='166' src="<%= p.pictures.first.image %>">
                 <% if user_signed_in? && current_user.user_type == "1" %>
-                <%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
+                  <%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
                 <% end %>
               </div>
-              <div style="float:right;width:45%;text-align:left;word-wrap:break-word;">
-                Name:<%= p.name %><br/>Price:<%= p.price %><br/>Info:<%= p.description %>
+              
+              <div class="p_index_thumbnail_right">
+                Name:<%= p.name %><br/>
+                Price:<%= p.price %><br/>
+                Info:<%= p.description %>
               </div>
+              
           </li>
         <% end %>
       </ul>
     </div> 
      
-  <div style="margin:35px auto 0;width:22%;">
+  <div class="s">
     <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
   </div>
 

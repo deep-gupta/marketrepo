@@ -1,5 +1,5 @@
 
-<div style="position:fixed;top:60px;left:25%;right:25%">
+<div class="p_show">
   <table class="table table-bordered">
     <tr>
       <th>Name</th>
@@ -14,9 +14,9 @@
   </table>
 </div>  
 
-<div style="position:absolute;top:30%;left:40%;background-color:white;border:2px solid black;">
+<div class="p_show_img">
   <img src="<%= @product.pictures.first.image %>" height="200" width="200">
 </div>
-<div style="position:fixed;top:45px;right:20px;">
+<div class="back">
   <%= link_to "back", shop_products_path(params[:shop_id]) %>
 </div>

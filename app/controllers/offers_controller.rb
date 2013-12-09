@@ -1,20 +1,17 @@
 class OffersController < ApplicationController
   before_filter :authenticate_user!
-  
-  def index
-  end
+  load_and_authorize_resource
   
   def new
+  #shopkeeper
     @offer = Shop.find(params[:shop_id]).offers.new
   end
   
   def create
-    if params[:commit] == "Submit"
-      @offer = Offer.new(params[:offer])
-      @offer.category_id = params[:category]
-      @offer.save
-    else
-      redirect_to shop_path(params[:shop_id])
-    end  
+  #shopkeeper
+    @offer = Offer.new(params[:offer])
+    @offer.category_id = params[:category]
+    @offer.save
+    redirect_to shop_products_path(params[:shop_id])
   end
 end

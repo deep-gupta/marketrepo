@@ -1,10 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
   
-  def show_cart_product
-    @carts = Cart.where(:user_id => current_user.id)
-  end
-
   def new
   end
 
@@ -19,14 +16,14 @@ class OrdersController < ApplicationController
   end
 
   def place_order
-    @carts = Cart.where(:user_id => current_user.id)
+    @cart_products = Cart.where(:user_id => current_user.id)
     @order = User.find(current_user).orders.last
     
-    @carts.each do |c|
-      @orderdetail = @order.order_details.create(:product_name => c.product.name)
+    @cart_products.each do |cp|
+      @orderdetail = @order.order_details.create(:product_name => cp.product.name)
     end
     
-    @carts.delete_all
+    @cart_products.delete_all
     render text: "order successfully placed"
   end
 end

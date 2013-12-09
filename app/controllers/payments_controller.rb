@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  load_and_authorize_resource
 
   def new
      @payment = Payment.new

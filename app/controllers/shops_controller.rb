@@ -1,40 +1,32 @@
 class ShopsController < ApplicationController
   before_filter :authenticate_user!, except: [:search_result]
+  load_and_authorize_resource
+  skip_authorize_resource :only => :search_result
   
   def new
-    if current_user.user_type != '2'
-      redirect_to users_url
-    end
+    #shopkeeper
+    @shop = Shop.new
   end
   
   def create
-    if params[:commit] == "Submit"
-      @shop = Shop.new(params[:shop])
-      @shop.mall_id = params[:mall][:mall_id]
-      @shop.user_id = current_user.id
-      @shop.save
-    else
+    #shopkeeper
+    @shop = Shop.new(params[:shop])
+    @shop.mall_id = params[:mall][:mall_id]
+    @shop.user_id = current_user.id
+    if @shop.save
       redirect_to users_url
+    else
+      render 'new'
     end
   end
 
-  def show
-    if current_user.user_type == '2'
-      @shop = Shop.find(params[:id])
-    end
-  end
-  
-  def showmall
+  def show_mall
     @mall = Mall.where(:city_id => params[:id])
-    render :partial => 'showmall'
+    render :partial => 'show_mall'
   end
   
   def search_result
-    #if params[:page] == 
-      #@products = Product.where("name like ?", "%#{params[:search][:search]}%" and :shop_id => params[:shop_id] ).paginate(:page => 1, :per_page => 5)
-    #else
-      @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => params[:page], :per_page => 8)
-    #end
-    #end  
+    page = params[:page].present? ? params[:page]: 1
+    @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => page, :per_page => 8)
   end
 end

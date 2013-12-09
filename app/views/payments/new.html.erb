@@ -1,4 +1,4 @@
-<div style="margin:0 auto;text-align:center;">
+
 <%= form_for @payment, :url => payments_url do |f|%>
   <%=f.label:Amount%>
   <%= f.text_field :amount%>
@@ -16,4 +16,4 @@
     <br/>
   <%= f.submit 'Pay'%>
 <% end%>
-</div>
+

@@ -1,50 +1,45 @@
-<%#= render "/shops/shop" %>
-<div style="text-align:center;">
+<div class="t_center">
   <h3>Search Result </h3>
 </div>
 
-
-<div style="display:Products;width:100%;position:absolute;left:1%;top:15%;">
+<div class="d_w_a">
+  
   <% if @products.present? %>
-  <div style="text-align:center">
-  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+  <div class="t_center">
+    <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
   </div>
-    <div style="margin:0 auto;position:relative;top:15px;">  
-     
-      <div style="display:inline-block;margin:0 auto;width:auto;max-width:94%;background-color:grey;position:relative;left:0px;top:0px;border:5px solid black;">
+    <div class="s_r_m">  
+      <div class="s_r">
         <ul>
           <% @products.each do |p| %>
             
-            <li class="thumbnail" style="float:left;display:inline-block;padding:5px;height:200px;width:275px;margin:5px;">
+            <li class="thumbnail s_r_thumbnail" >
                 
-                <div style="position:relative;width:50%;left:0px;top:0px;float:left">
+                <div class="s_r_thumbnail_left">
                   <img width='194' height='166' src="<%= p.pictures.first.image %>">
                   <% if user_signed_in? && current_user.user_type == "1" %>
                     <%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get",:remote => true%>
                   <% end %>
                 </div>
-                <div style="float:right;width:45%;text-align:left;word-wrap:break-word;">
-                  Name:<%= p.name %><br/>Price:<%= p.price %><br/>Info:<%= p.description %>
+                <div class="s_r_thumbnail_right">
+                  Name:<%= p.name %><br/>
+                  Price:<%= p.price %><br/>
+                  Info:<%= p.description %>
                 </div>
             </li>
           
           <% end %>
         </ul>
       </div>  
-      <div style="position:relative;top:-18px;text-align:center;">
+      <div class="p_t_t">
         <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
       </div>
     </div>  
   
   <% else %>
     <%= flash[:notice] = "No record found" %>
-    <%#= redirect_to shop_products_url(params[:shop_id]) %>
   <% end%>  
 </div>
-
-
-  
-
 <% if user_signed_in?%>
 
   <div class="back">
@@ -53,7 +48,7 @@
     <% end %>
 
     <% if current_user.user_type == nil%>
-      <%=link_to "Back" ,show_all_category_users_path %>
+      <%=link_to "Back" ,categories_path %>
     <% end %>
   </div>
 
@@ -61,7 +56,7 @@
   <div class="back">
     <%=link_to "Back" ,users_path %>
   </div>
-  <div class="signout" style="top:-90px;">
+  <div class="signout t_90">
     <%= link_to "Sign in", users_path %>
   </div>
 <% end %>
