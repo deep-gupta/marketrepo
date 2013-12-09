@@ -30,3 +30,4 @@ class ShopsController < ApplicationController
     @products = Product.where("name like ?", "%#{params[:search][:search]}%").paginate(:page => page, :per_page => 8)
   end
 end
+
