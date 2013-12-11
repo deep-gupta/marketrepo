@@ -4,9 +4,8 @@
 <div class="rightbox">
   <%= form_tag(save_categories_categories_path, method: "get") do %>
 
-    <% @category.each do |c| %>
+    <% @categories.each do |c| %>
       <div class="choose_category">
-       
         <label class="checkbox-inline">
           <%= check_box_tag 'name_ids[]', c.id,:class => 'checkbox' %>
           <%= label_tag(:name, c.name) %>

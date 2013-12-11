@@ -10,13 +10,14 @@
     <li>
       <%=link_to "Show cart" ,carts_path, :method => "get" %>
     </li>
-  </ul>  
-</div>
-
+  </ul>
+</div>    
+  
+<div class="alert alert-success" id="ch"><%= flash[:notice]%></div>
 
 <div class="v_searchbox">
-  <%= form_for :search, url: showproduct_users_path, method: :get, :class => "form-search" do |f| %>
-    <%= f.text_field :search, :autofocus => true, :placeholder =>"Search by category or name", :class=>"input-medium search-query text-field-height"%>
+  <%= form_for :search, url: show_products_users_path, method: :get, :class => "form-search" do |f| %>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"Search by product name", :class=>"input-medium search-query text-field-height"%>
     <%= f.submit "Search", :class => "btn" %>
   <% end %>
 </div>

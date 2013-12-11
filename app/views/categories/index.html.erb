@@ -6,7 +6,7 @@
       <th> Show all items</th>
     </tr>
     
-    <% @category.each do |c|%>
+    <% @categories.each do |c|%>
       <tr>
         <td><%= c.name%></td>
         <td><%= link_to "Show all products", show_product_category_path(c.id) %></td>

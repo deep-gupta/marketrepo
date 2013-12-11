@@ -2,7 +2,6 @@
 <div class="rightbox_mall">
   <div>
       <%= form_for :category, url:categories_path, method: :post, :class => "form-horizontal" do |f| %>
-      
       <% if @category.errors.any? %>
         <div id="error_explanation">
           <ul>
@@ -18,7 +17,6 @@
             <%= f.text_field :name, :autofocus => true, :placeholder => "Category Name",:class => "text-field-height",:id => "name" %>
           </div>
         </div>
-  
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <%= f.submit "Submit", :class => "btn btn-primary", :onclick => "return validateFormcategory();" %>

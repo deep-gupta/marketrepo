@@ -1,21 +1,27 @@
 class CartsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource
   
   def index
     #visitors
-    @carts = Cart.where(:user_id => current_user.id)
+    #Cart.where(:user_id => current_user.id)
+    @carts = current_user.carts 
   end
   
   def add_to_cart
-    #visitors
-    @carts = Cart.create(:user_id => current_user.id, :product_id => params[:id]) 
-  
+    # visitors
+    @cart = current_user.carts.create(:product_id => params[:id])
+    render :partial => 'add_to_cart'
   end
   
   def destroy
     #visitors
-    Cart.find(params[:id]).delete
-    redirect_to carts_path
+    @cart = current_user.carts.where(:id => params[:id])
+    if @cart.present?
+      @cart.delete_all
+      redirect_to carts_path,  :flash => {:notice => "1 item removed"}
+    else
+      redirect_to carts_path, :flash => {:notice => "access denied"}
+    end
   end
 end

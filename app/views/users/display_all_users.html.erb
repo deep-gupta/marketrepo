@@ -13,8 +13,8 @@
         <tr>
           <td><%= u.first_name%></td>
           <td><%= u.email%></td>
-          <%unless u.user_type == nil%>
-          <td><%=link_to "Delete" ,user_path(u.id), :method => :delete %><br /></td>
+          <%unless u.user_type == 'admin'%>
+          <td><%=link_to "Delete", user_path(u.id), :method => :delete %><br /></td>
           <%end%> 
         </tr>
         <% end%>
@@ -23,4 +23,3 @@
   </div>  
 </div>
 
-<div class="alert alert-success"><%= flash[:notice]%></div>

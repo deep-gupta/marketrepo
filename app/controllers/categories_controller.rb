@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate_user!, except: [:show_product]
-  load_and_authorize_resource
+  before_filter :authenticate_user!
+  authorize_resource
   
   PER_PAGE = 6
   
   def index
     # admin
-    @category = Category.all
+    @categories = Category.all
   end
   
   def new
@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
   def create
     # admin  
     @category = Category.create(name: params[:category][:name])
+    
     if @category.save
       redirect_to users_path, :flash => {:notice => "Category successfully created"}
     else
@@ -26,23 +27,24 @@ class CategoriesController < ApplicationController
 
   def choose_categories
     # visitors
-    @category = Category.all
+    @categories = Category.all
   end
 
   def save_categories
     #visitors
-    @category = UserCategory.where(:user_id => current_user.id)
-    @category.delete_all
+    #@category = UserCategory.where(:user_id => current_user.id)
+    @user_categories = current_user.user_categories
+    @user_categories.delete_all
     
     params[:name_ids].each do |name|
-      UserCategory.create(category_id: name, user_id: current_user.id).save
+      #UserCategory.create(category_id: name, user_id: current_user.id)
+      current_user.user_categories.create(category_id: name)
     end
-    redirect_to users_path
+    redirect_to users_path, :flash => {:notice => "Category successfully Added to your profile"}
   end
   
   def show_product
     #admin
-    page = params[:page].present? ? params[:page] : 1
-    @products = Category.find(params[:id]).products.paginate(:page => page, :per_page => PER_PAGE)
+    @products = Category.where(:id => params[:id]).first.products.paginate(:page => params[:page], :per_page => PER_PAGE)
   end
 end

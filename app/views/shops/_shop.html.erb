@@ -3,7 +3,7 @@
       <ul class="nav nav-list">
         
         <li class="nav-header">
-          <%= Shop.find(params[:shop_id]).name %>
+          <%= Shop.where(:shop_id => params[:shop_id]).name %>
         </li>
         <li class="active">
           <%=link_to "show products" ,shop_products_path(params[:shop_id]) %>
@@ -23,6 +23,8 @@
         </ul>
     </div>        
 </div>
+
+<div class="alert alert-success margin_l" id="ch"><%= flash[:notice]%></div>
 
 <div class="back">
   <%= link_to "Back",users_path %>

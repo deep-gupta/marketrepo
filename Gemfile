@@ -45,4 +45,9 @@ gem 'will_paginate-bootstrap'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
+
+group :development do
+  gem "better_errors"
+end
+gem "binding_of_caller"

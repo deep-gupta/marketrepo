@@ -51,10 +51,10 @@ function change_subtotal(price,id)
 function total_amount()
 {
   var rows = $("#table td:nth-child(5)");
-  amt=0;
-  for(var i=0; i< rows.length;i++)
+  amt = 0;
+  for(var i = 0; i < rows.length; i++)
     {
-      amt= amt + parseInt(rows[i].textContent);
+      amt = amt + parseInt(rows[i].textContent);
     }
   $("#payble_amount").text("Total payable amount :" + amt);
 }
@@ -150,4 +150,11 @@ function validateFormuser()
   return temp;
 }
 
+function add(pid)
+{
+  var url = "/carts/" + pid +"/add_to_cart"
+  $.get( url, function( data ) {
+  $('#ch').html(data);
+  });
+}
 

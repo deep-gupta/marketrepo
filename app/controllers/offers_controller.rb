@@ -1,17 +1,27 @@
 class OffersController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource
   
   def new
-  #shopkeeper
-    @offer = Shop.find(params[:shop_id]).offers.new
+    #shopkeeper
+    @shop = current_user.shops.where(:id => params[:shop_id]).first
+    if @shop.present?
+      @shop.offers.new
+    else
+      redirect_to users_path, :flash => {:notice => "access denied"} 
+    end  
   end
   
   def create
-  #shopkeeper
+    #shopkeeper
     @offer = Offer.new(params[:offer])
     @offer.category_id = params[:category]
     @offer.save
-    redirect_to shop_products_path(params[:shop_id])
+    
+    if @offer.save
+      redirect_to shop_products_path(params[:shop_id]), :flash => {:notice => "Offer successfully created"}
+    else
+      render 'new'
+    end
   end
 end

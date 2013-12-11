@@ -2,59 +2,56 @@
 <%= render "/shops/shop"%>
 
 <div class="product_new">
-
   <%= form_for @product, url: shop_products_path, method: :post, :class => "form-horizontal" do |f| %>
-    
-    
-    
+    <% if @product.errors.any? %>
+      <div id="error_explanation" class="astrik">
+        <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %> 
     <div>
       <%= f.hidden_field :shop_id, :value => params[:shop_id] %>
     </div>
-
-
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Name<span class="astrik">*</span></label>
-        <div class="col-sm-10">
-          <%= f.text_field :name, :autofocus => true, :placeholder =>"Product Name",:class => "text-field-height",:id => "name"%>
-        </div>
-      </div><br />
-
-
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Category<span class="astrik">*</span></label>
-        <div class="col-sm-10">
-          <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true,:id =>"cate" %>
-        </div>
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Name<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= f.text_field :name, :autofocus => true, :placeholder =>"Product Name",:class => "text-field-height",:id => "name"%>
       </div>
-
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Price<span class="astrik">*</span></label>
-        <div class="col-sm-10">
-          <%= f.text_field :price, :placeholder => "price",:class => "text-field-height",:id =>"pric" %>
-        </div>
+    </div><br />
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Category<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true,:id =>"cate" %>
       </div>
-
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Description</label>
-        <div class="col-sm-10">
-          <%= f.text_area :description, :size => "5x5",:placeholder => "Something about product" %> 
-        </div>
+    </div>
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Price<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= f.text_field :price, :placeholder => "price",:class => "text-field-height",:id =>"pric" %>
       </div>
-    
-      <div class="form-group"> 
-        <label class="col-sm-2 control-label">Picture<span class="astrik">*</span></label>
-        <div class="col-sm-10">
-          <%= f.fields_for :pictures do |pic| %>
-          <%= pic.file_field :image ,:id => "imag"%>
-          <% end %>
-        </div>
+    </div>
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-10">
+        <%= f.text_area :description, :size => "5x5",:placeholder => "Something about product" %> 
       </div>
-      
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit "Submit", :class => "btn btn-primary",:onclick => "return validateFormproduct();" %>
-        </div>
+    </div>
+    <div class="form-group"> 
+      <label class="col-sm-2 control-label">Picture<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= f.fields_for :pictures do |pic| %>
+        <%= pic.file_field :image ,:id => "imag"%>
+        <% end %>
       </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Submit", :class => "btn btn-primary",:onclick => "return validateFormproduct();" %>
+      </div>
+    </div>
       <div class="warning" id="show_msg"></div>
   <% end %>
 </div>

@@ -8,7 +8,7 @@ Market::Application.routes.draw do
     collection do
       get 'display_all_users'
       get 'confirm_pending'
-      get 'showproduct'
+      get 'show_products'
       get 'show_cart'
     end          
     member do

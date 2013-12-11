@@ -1,3 +1,7 @@
+.margin_l
+{
+  margin-left:330px;
+}
 .w_color
 {
   color:white
@@ -171,7 +175,7 @@
   display:inline-block;
   padding:5px;
   height:200px;
-  width:260px;
+  width:275px;
   margin:5px;
 }
 .s_r_thumbnail_left
@@ -226,70 +230,71 @@
   margin-left:300px;
 }
 .product_div {
-    background-color: rgb(128, 128, 128);
-    border: 5px solid rgb(0, 0, 0);
-    display: inline-block;
-    margin-left: 20px;
-    width: 70%;
+  background-color: rgb(128, 128, 128);
+  border: 5px solid rgb(0, 0, 0);
+  display: inline-block;
+  margin-left: 20px;
+  width: 70%;
 }
 .product_div_img {
-    display: inline-block;
-    float: left;
-    height: 200px;
-    margin: 5px;
-    padding: 5px;
-    width: 275px;
+  display: inline-block;
+  float: left;
+  height: 200px;
+  margin: 5px;
+  padding: 5px;
+  width: 275px;
 }
 .product_div_img_left {
-    float: left;
-    width: 50%;position:relative;left:0px;top:0px;
+  float: left;
+  width: 50%;position:relative;left:0px;top:0px;
 }
-.product_div_img_right {
-    float: right;
-    text-align: left;
-    width: 45%;
-    word-wrap: break-word;
+.product_div_img_right 
+{
+  float: right;
+  text-align: left;
+  width: 45%;
+  word-wrap: break-word;
 }
 .border
 {
-border-style:solid;
-border-width:1px;
-margin-right:200px;
+  border-style:solid;
+  border-width:1px;
+  margin-right:200px;
 }
 
 .footer
 {
-background-color:grey;
-text-align:center;
-border-style:solid;
-border-width:2px;
-position:fixed;
-width:100%;
-height:40px;
-bottom:0px;
-z-index:999;
+  background-color:grey;
+  text-align:center;
+  border-style:solid;
+  border-width:2px;
+  position:fixed;
+  width:100%;
+  height:40px;
+  bottom:0px;
+  z-index:999;
 
 }
 .header
 {
-background-color:grey;
-text-align:center;
-border-style:solid;
-border-width:2px;
-position:relative;
-width:100%;
-height:40px;
-top:0px;
+  background-color:grey;
+  text-align:center;
+  border-style:solid;
+  border-width:2px;
+  position:relative;
+  width:100%;
+  height:40px;
+  top:0px;
 
 }
 
 .signout
 {
-color:green;
-position:relative;
-float:right;
-top:5px;
-right:10px;
+  color:green;
+  position:relative;
+  float:right;
+  top:5px;
+  right:10px;
 }
 
 .signout a{
@@ -298,38 +303,38 @@ right:10px;
 
 .home
 {
-color:green;
-position:absolute;
-top:10px;
-left:20px;
+  color:green;
+  position:absolute;
+  top:10px;
+  left:20px;
 }
 .search
 {
-position:absolute;
-top:6px;
-left:20%;
+  position:absolute;
+  top:6px;
+  left:20%;
 }
 .home a
 {
-color: #fff;
+  color: #fff;
 }
 .signin_content {
 
-background-color: #E9E9EB;
-margin-right:2px;
-width: 350px;
-min-height: 500px;
-padding: 10px;
-position:fixed;
-top:42px;
-right:5px;
-text-align:center;
+  background-color: #E9E9EB;
+  margin-right:2px;
+  width: 350px;
+  min-height: 500px;
+  padding: 10px;
+  position:fixed;
+  top:42px;
+  right:5px;
+  text-align:center;
 }
 .signin_search
 {
   position:fixed;
-top:5px;
-left:20px;
+  top:5px;
+  left:20px;
 
 }
 .productbox
@@ -353,27 +358,24 @@ left:20px;
 
 .slider_box
 {
-
-  
   margin-left:150px;
   margin-top:97px;
   width:50%;
   height:50%;
-
 }
 .well
 {
-min-height: 20px;
-padding: 19px;
-margin-bottom: 20px;
-background-color: #f5f5f5;
-border: 1px solid #e3e3e3;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
-border-radius: 4px;
--webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
--moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .div-table{
@@ -402,37 +404,36 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .setimage {
-    float: left;
-    height: 200px;
-    margin: 5px;
-    overflow: auto;
-    width: 45%;
-    word-wrap: break-word;
+  float: left;
+  height: 200px;
+  margin: 5px;
+  overflow: auto;
+  width: 45%;
+  word-wrap: break-word;
 }
 .number-field-width
 {
   width:100px;
   height:25px!important;
-
 }
 
 .alert {
-   font-weight: bold;
-   -moz-border-radius: 4px 4px 4px 4px;
-   -webkit-border-radius: 4px 4px 4px 4px;
-   border-radius: 4px 4px 4px 4px;
-   margin-bottom: 18px;
-   padding: 12px 25px 12px 24px;
-   -moz-box-shadow: 3px 3px 1px 1px #fff;
-   -webkit-box-shadow: 3px 3px 1px 1px #fff;
-   box-shadow: 3px 3px 1px 1px #fff;
+  font-weight: bold;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 18px;
+  padding: 12px 25px 12px 24px;
+  -moz-box-shadow: 3px 3px 1px 1px #fff;
+  -webkit-box-shadow: 3px 3px 1px 1px #fff;
+  box-shadow: 3px 3px 1px 1px #fff;
 }
 .alert-success {
-   background-color: #fff;
-   border-color: #fff;
-   width: 280px;
-   color: black;
-   padding-top: 20px;
+  background-color: #fff;
+  border-color: #fff;
+  width: 280px;
+  color: black;
+  padding-top: 20px;
 }
 .validate
 {
@@ -446,34 +447,34 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   right:20px;
 }
 .navp {
-    float: left;
-    height: 500px;
-    padding: 8px 0;
-    width: 300px;
+  float: left;
+  height: 500px;
+  padding: 8px 0;
+  width: 300px;
 }
 .rightbox {
-    background-color: rgb(245, 245, 245);
-    border: 5px solid rgb(0, 0, 0);
-    float: left;
-    height: auto;
-    min-height:480px;
-    margin-left: 129px;
-    margin-top: 50px;
-    width: 51%;
+  background-color: rgb(245, 245, 245);
+  border: 5px solid rgb(0, 0, 0);
+  float: left;
+  height: auto;
+  min-height:480px;
+  margin-left: 129px;
+  margin-top: 50px;
+  width: 51%;
 }
 .rightbox_mall {
-    background-color: rgb(245, 245, 245);
-    border: 5px solid rgb(0, 0, 0);
-    float: left;
-    height: auto;
-    min-height:480px;
-    margin-left: 129px;
-    width: 51%;
+  background-color: rgb(245, 245, 245);
+  border: 5px solid rgb(0, 0, 0);
+  float: left;
+  height: auto;
+  min-height:480px;
+  margin-left: 129px;
+  width: 51%;
 }
 .panelbox {
-    float: left;
-    margin-left: 150px;
-    width: 51%;
+  float: left;
+  margin-left: 150px;
+  width: 51%;
 }
 .p_show
 {
