@@ -1,5 +1,22 @@
 $(document).ready(function(){
   
+  setTimeout(function(){
+    if ($('#msg_cart').length > 0) {
+    $('#msg_cart').remove();
+    }
+  }, 2000)
+
+  
+
+  setTimeout(function(){
+    if ($('#msg_shopkeeper').length > 0) {
+      $('#msg_shopkeeper').remove();
+    }
+  }, 2000)
+  
+  
+  
+  
   $('.bxslider').bxSlider();
   $('#cou').change(function() {
     var cid = $(this).val();
@@ -59,7 +76,7 @@ function total_amount()
   $("#payble_amount").text("Total payable amount :" + amt);
 }
 
-function validateFormcategory()
+function validateFormCategory()
 {
   var x = $("#name").val();
   if(x=="")
@@ -69,7 +86,7 @@ function validateFormcategory()
   }
 }
 
-function validateFormmall()
+function validateFormMall()
 {
   var temp=true;
   var cou = $("#cou").val();
@@ -85,7 +102,7 @@ function validateFormmall()
 }
 
 
-function validateFormoffer()
+function validateFormOffer()
 {
   var temp=true; 
   var sdate = $("#sdate").val();
@@ -100,7 +117,7 @@ function validateFormoffer()
 }
 
   
-function validateFormproduct()
+function validateFormProduct()
 {
   
   var temp=true;
@@ -118,7 +135,7 @@ function validateFormproduct()
 }
 
   
-function validateFormshop()
+function validateFormShop()
 {
   var temp=true;
   var cou = $("#cous").val();
@@ -136,7 +153,7 @@ function validateFormshop()
 }
 
 
-function validateFormuser()
+function validateFormUser()
 {
   var temp=true;
   var fname = $("#fname").val();
@@ -153,8 +170,8 @@ function validateFormuser()
 function add(pid)
 {
   var url = "/carts/" + pid +"/add_to_cart"
-  $.get( url, function( data ) {
-  $('#ch').html(data);
+  $.get( url, {},  function( data ) {
+  $('#msg_visitors').html(data);
   });
 }
 

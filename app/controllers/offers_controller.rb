@@ -6,7 +6,7 @@ class OffersController < ApplicationController
     #shopkeeper
     @shop = current_user.shops.where(:id => params[:shop_id]).first
     if @shop.present?
-      @shop.offers.new
+      @offer = @shop.offers.new
     else
       redirect_to users_path, :flash => {:notice => "access denied"} 
     end  

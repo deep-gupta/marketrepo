@@ -1,5 +1,5 @@
 <%= render "/users/shopkeeper"%>
-<div class="rightbox_mall">
+<div class="rightbox">
   <%= form_for :shop, url: shops_path, method: :post, :class => "form-horizontal" do |f| %>
     <% if @shop.errors.any? %>
       <div id="error_explanation">
@@ -44,7 +44,7 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit "Submit", :class => "btn btn-primary",:onclick => "return validateFormshop();" %>
+        <%= f.submit "Submit", :class => "btn btn-primary",:onclick => "return validateFormShop();" %>
       </div>
     </div>
   <% end %>

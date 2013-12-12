@@ -570,3 +570,10 @@
   left:25%;
   border:5px solid black;
 }
+.p_t_50
+{
+position:absolute;
+top:90px;
+right:0px;
+left:0px;
+}

@@ -47,7 +47,7 @@
       <%=link_to "Back" ,shop_products_path(params[:shop_id]) %>
     <% end %>
 
-    <% if current_user.user_type == nil%>
+    <% if current_user.user_type == 'admin'%>
       <%=link_to "Back" ,categories_path %>
     <% end %>
   </div>

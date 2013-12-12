@@ -1,5 +1,4 @@
 <%= render "/shops/shop" %>
-
 <div class="center">
   <h3></h3>
   <% if @products.present? %>
@@ -13,21 +12,18 @@
               <div class="p_index_thumbnail_left">
                 <img width='194' height='166' src="<%= p.pictures.first.image %>">
                 <% if user_signed_in? && current_user.user_type == "1" %>
-                  <%= link_to "Add to cart", addtocart_cart_path(p.id), :method => "get", :remote => true%>
+                  <%= link_to "Add to cart", add_to_cart_cart_path(p.id), :method => "get", :remote => true %>
                 <% end %>
               </div>
-              
               <div class="p_index_thumbnail_right">
                 Name:<%= p.name %><br/>
                 Price:<%= p.price %><br/>
                 Info:<%= p.description %>
               </div>
-              
           </li>
         <% end %>
       </ul>
     </div> 
-     
     <div class="s">
       <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
     </div>

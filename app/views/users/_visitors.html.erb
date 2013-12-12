@@ -12,13 +12,11 @@
     </li>
   </ul>
 </div>    
-  
-<div class="alert alert-success" id="ch"><%= flash[:notice]%></div>
-
 <div class="v_searchbox">
   <%= form_for :search, url: show_products_users_path, method: :get, :class => "form-search" do |f| %>
     <%= f.text_field :search, :autofocus => true, :placeholder =>"Search by product name", :class=>"input-medium search-query text-field-height"%>
     <%= f.submit "Search", :class => "btn" %>
   <% end %>
 </div>
-
+  
+<div class="alert alert-success" id="msg_visitors"><%= flash[:notice]%></div>

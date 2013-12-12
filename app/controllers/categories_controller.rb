@@ -32,14 +32,19 @@ class CategoriesController < ApplicationController
 
   def save_categories
     #visitors
-    #@category = UserCategory.where(:user_id => current_user.id)
     @user_categories = current_user.user_categories
-    @user_categories.delete_all
+    #@user_categories.delete_all
     
     params[:name_ids].each do |name|
-      #UserCategory.create(category_id: name, user_id: current_user.id)
-      current_user.user_categories.create(category_id: name)
+      begin
+        current_user.user_categories.create(category_id: name)
+        #raise 'a test exception'
+      rescue Exception => e
+        puts "Error occours"
+        redirect_to users_path, :flash => {:notice => "Error occour"} and return
+      end 
     end
+    @user_categories.delete_all
     redirect_to users_path, :flash => {:notice => "Category successfully Added to your profile"}
   end
   

@@ -4,14 +4,13 @@ class CartsController < ApplicationController
   
   def index
     #visitors
-    #Cart.where(:user_id => current_user.id)
     @carts = current_user.carts 
   end
   
   def add_to_cart
     # visitors
     @cart = current_user.carts.create(:product_id => params[:id])
-    render :partial => 'add_to_cart'
+    render :text => 'added successfully'
   end
   
   def destroy

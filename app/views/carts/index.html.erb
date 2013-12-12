@@ -1,8 +1,9 @@
-<div class="alert alert-success" id="msg"><%= flash[:notice]%></div>
+<div class="alert alert-success" id="msg_cart"><%= flash[:notice]%></div>
 
-<div class="panel panel-default" class="m_10">
+<div class="panel panel-default p_t_50">
   <div class="panel-heading" class="g_color">
     <h3 class="panel-title">Place Order</h3>
+    
   </div>
   <div class="panel-body">
     <% if @carts.present? %>
@@ -39,6 +40,3 @@
     </div>  
   </div>
 </div>
-
-
-
