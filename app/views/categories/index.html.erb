@@ -4,12 +4,16 @@
     <tr>
       <th> Name </th>
       <th> Show all items</th>
+      <th> Edit</th>
+      <th> Delete</th>
     </tr>
     
     <% @categories.each do |c|%>
       <tr>
         <td><%= c.name%></td>
         <td><%= link_to "Show all products", show_product_category_path(c.id) %></td>
+        <td><%= link_to "Edit", edit_category_path(c.id) %></td>
+        <td><%= link_to "Delete", category_path(c.id), :method => :delete %></td>
       </tr>    
     <% end %>
   </table>

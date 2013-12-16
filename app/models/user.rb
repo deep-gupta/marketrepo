@@ -11,12 +11,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :pictures, :pictures_attributes, :date_of_birth, :email_id, :first_name, :gender, :last_name, :password, :phone_no, :status_of_shopkeeper, :user_type
   
-  has_many :user_categories
+  has_many :user_categories, dependent: :destroy
   has_many :categories, through: :user_categories
-  has_many :shops
+  
+  has_many :shops, dependent: :destroy
   has_many :pictures, as: :imageable
   accepts_nested_attributes_for :pictures
-  has_many :orders
+  has_many :orders, dependent: :destroy
   has_many :carts
   
   private

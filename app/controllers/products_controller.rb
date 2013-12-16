@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     if @shop.present?
       @products = @shop.products.paginate(:page => params[:page], :per_page => PER_PAGE)
     else
-      redirect_to users_path, :flash => {:notice => "access denied"}#shop_products_path(params[:shop_id]) 
+      redirect_to users_path, :flash => {:notice => "access denied"} 
     end  
   end
   

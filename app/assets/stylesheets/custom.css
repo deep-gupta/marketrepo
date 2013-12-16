@@ -44,6 +44,10 @@
   position:relative;
   top:30px;
 }
+.left_40
+{
+  left:40%;
+}
 .p_shop_in
 {
   width: 300px;
@@ -572,8 +576,8 @@
 }
 .p_t_50
 {
-position:absolute;
-top:90px;
-right:0px;
-left:0px;
+  position:absolute;
+  top:90px;
+  right:0px;
+  left:0px;
 }

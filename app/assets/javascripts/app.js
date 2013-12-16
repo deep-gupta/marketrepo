@@ -6,42 +6,41 @@ $(document).ready(function(){
     }
   }, 2000)
 
-  
-
   setTimeout(function(){
     if ($('#msg_shopkeeper').length > 0) {
       $('#msg_shopkeeper').remove();
     }
   }, 2000)
   
-  
-  
-  
   $('.bxslider').bxSlider();
   $('#cou').change(function() {
     var cid = $(this).val();
-    $.get( "/malls/show_state",{ id: cid}, function( data ) {
+    var url = $(this).data("url");
+    $.get( url,{ id: cid}, function( data ) {
     $('#sta').html(data);
     });
   });
 
  $('#sta').change(function() {
     var sid = $(this).val();
-    $.get( "/malls/show_city",{ id: sid}, function( data ) {
+    var url = $(this).data("url");
+    $.get( url,{ id: sid}, function( data ) {
     $('#cit').html(data);
     });
   });
 
   $('#cous').change(function() {
     var cid = $(this).val();
-    $.get( "/malls/show_state",{ id: cid}, function( data ) {
+    var url = $(this).data("url");
+    $.get( url,{ id: cid}, function( data ) {
       $('#stas').html(data);
     });
   });
 
   $('#stas').change(function() {
     var sid = $(this).val();
-    $.get( "/malls/show_city",{ id: sid}, function( data ) {
+    var url = $(this).data("url");
+    $.get( url,{ id: sid}, function( data ) {
       $('#cits').html(data);
     });
   });
@@ -49,7 +48,8 @@ $(document).ready(function(){
 
   $('#cits').change(function() {
     var cid = $(this).val();
-    $.get( "/shops/show_mall",{ id: cid}, function( data ) {
+    var url = $(this).data("url");
+    $.get( url,{ id: cid}, function( data ) {
       $('#mals').html(data);
     });
   });

@@ -1,0 +1,34 @@
+<%= render "shops/shop" %>
+<div class="panelbox">
+  <div class="panel panel-default p_t_30 left_40">
+    <div class="panel-heading"><h2>Malls</h2></div>
+    <div class="panel-body">
+      <table class="table table-striped table table-bordered">
+        <tr>
+          <th>Start date</th>
+          <th>message</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      <% @offers.each do |o|%>
+        <tr>
+          <td><%= o.from_date %></td>
+          <td><%= o.message %></td>
+          <td><%= link_to "Edit", edit_shop_offer_path(params[:shop_id], o.id) %></td>
+          <td><%= link_to "Delete", shop_offer_path(params[:shop_id], o.id), :method => :delete %></td> 
+        </tr>
+      <% end%>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="search">
+  <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
+    <div>
+      <%= hidden_field_tag "shop_id", params[:shop_id] %>    
+    </div>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
+    <%= f.submit "Search", :class => "btn" %>
+  <% end %>
+</div>

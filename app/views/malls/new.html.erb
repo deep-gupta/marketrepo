@@ -13,13 +13,13 @@
     <div class="form-group"> 
       <label class="col-sm-2 control-label">Country<span class="astrik">*</span></label>
       <div class="col-sm-10">
-          <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select' }, {:id => 'cou'}) %>
+          <%= select("country", "country_id", Country.all.collect {|p| [ p.name, p.id ] },{:prompt => 'Select' }, {:id => 'cou',:'data-url' => show_state_malls_path}) %>
       </div>
     </div>
     <div class="form-group"> 
       <label class="col-sm-2 control-label">State<span class="astrik">*</span></label>
       <div class="col-sm-10">
-        <%= select("state", "state_id",{},{ :prompt => 'Select'}, {:id => 'sta'}) %>
+        <%= select("state", "state_id",{},{ :prompt => 'Select'}, {:id => 'sta',:'data-url' => show_city_malls_path}) %>
       </div>
     </div>
     <div class="form-group"> 

@@ -1,0 +1,51 @@
+<%= render "/shops/shop"%>
+
+<div class="offer_new">
+  <%= form_for @offer, url: shop_offer_path(params[:shop_id], @offer), method: :put, :class => "form-horizontal" do |f| %>
+  
+    <div>
+      <%#= f.hidden_field :shop_id, :value => params[:shop_id] %>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Start date<span class="astrik">*</span></label>
+        <div class="col-sm-10">
+          <%= f.text_field :from_date, :type => "date", :value => @offer.from_date,:class => "text-field-height",:id =>"sdate" %>
+        </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">End Date</label>
+      <div class="col-sm-10">
+        <%= f.text_field :to_date, :type => "date", :value => @offer.to_date,:class => "text-field-height" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Category<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%=select_tag "category", options_from_collection_for_select(Category.all, "id", "name"), prompt: @offer.category.name,:id => "category" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Message<span class="astrik">*</span></label>
+      <div class="col-sm-10">
+        <%= f.text_area :message, :size =>"5x5",:value => @offer.message,:id => "message" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Submit", :class => "btn btn-primary", :onclick => "return validateFormOffer();" %>
+      </div>
+    </div>
+    <div class="warning" id="show_msg"></div>  
+  <% end %>
+</div>
+<div class="search">
+  <%= form_for :search, url: search_result_shops_path, method: :get, :class => "form-search" do |f| %>
+    <div>
+      <%= hidden_field_tag "shop_id", params[:shop_id] %>    
+    </div>
+    <%= f.text_field :search, :autofocus => true, :placeholder =>"By Name", :class=>"input-medium search-query"%>
+    <%= f.submit "Search", :class => "btn" %>
+  <% end %>
+</div>
+
+

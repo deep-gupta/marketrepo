@@ -1,10 +1,10 @@
-
 <div class="t_b_w">
   <div class="well navp">
     <ul class="nav nav-list">
       <li class="nav-header">Shopkeeper Action</li>
       <li class="active"><%=link_to "Edit profile" ,edit_user_path(current_user)%></li>
-      <li><%=link_to "create shop " ,new_shop_path %></li>
+      <li><%=link_to "Create shop" ,new_shop_path %></li>
+      <li><%=link_to "Manage shops ", shops_path %></li>
       <ul class="nav nav-list">
         <li class="nav-header">shops</li>
         <% if current_user.shops.present? %>

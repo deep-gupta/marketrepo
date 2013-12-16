@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
     @creditcard = ActiveMerchant::Billing::CreditCard.new
   end
   def create
-   @payment = Payment.new(params[:payment])
+    @payment = Payment.new(params[:payment])
     @creditcard = ActiveMerchant::Billing::CreditCard.new(params[:creditcard])
     @payment.valid_card = @creditcard.valid?
     if @payment.valid? 

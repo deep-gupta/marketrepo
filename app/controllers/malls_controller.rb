@@ -17,12 +17,34 @@ class MallsController < ApplicationController
     @mall = Mall.new(params[:mall])
     @mall.city_id = params[:city][:city_id].to_i
     @mall.save
-    
     if @mall.save
       redirect_to users_path, :flash => {:notice => "Mall successfully created"}
     else
       render 'new'
     end
+  end
+  
+  def edit
+    @mall = Mall.find(params[:id])
+  end
+  
+  def update
+    @mall = Mall.find(params[:id])
+    @mall.update_attributes(params[:mall])
+    @mall.city_id = params[:city][:city_id].to_i
+    
+    if @mall.save
+      redirect_to malls_path, :flash => {:notice => "Mall successfully updated"}
+    else
+      redirect_to users_path, :flash => {:notice => "error occour"}
+    end
+    
+  end
+  
+  def destroy
+    @mall = Mall.find(params[:id])
+    @mall.delete
+    redirect_to malls_path, :flash => {:notice => "mall successfully deleted"}
   end
   
   def show_state

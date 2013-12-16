@@ -5,6 +5,10 @@ class ShopsController < ApplicationController
   
   PER_PAGE = 8
   
+  def index
+    @shops = current_user.shops
+  end
+  
   def new
     #shopkeeper
     if current_user.status_of_shopkeeper == "confirm"
@@ -23,6 +27,34 @@ class ShopsController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def edit
+  
+    @shop = current_user.shops.where(:id => params[:id]).first
+    if @shop.blank?
+     redirect_to shops_path, :flash => {:notice => "Unauthorized Access"}
+    end
+  end
+  
+  def update
+    @shop = current_user.shops.where(:id => params[:id]).first
+    @shop.update_attributes(params[:shop])
+    @shop.mall_id = params[:mall][:mall_id]
+    
+    if @shop.save
+      redirect_to shops_path
+    else
+      redirect_to users_path, :flash => {:notice => "error occour"}
+    end
+  
+  end
+  
+  def destroy
+    @shop = current_user.shops.where(:id => params[:id]).first
+    @shop.delete
+    redirect_to shops_path
+    
   end
 
   def show_mall

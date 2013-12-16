@@ -5,9 +5,9 @@ class Ability
     user ||= User.new
     
     if user.user_type == 'admin'  # Admin
-      can [:index, :new, :create], [Category, Mall]
+      can [:index, :new, :create, :edit, :update, :destroy], [Category]
       can [:show_product], [Category]
-      can [:show_state, :show_city], [Mall]
+      can [:index, :new, :create, :show_state, :show_city, :edit, :update, :destroy], [Mall]
       can [ :index,:destroy, :display_all_users, :confirm_pending, :pending], [User]
     
     elsif user.user_type == '1'   # Visitors
@@ -17,9 +17,9 @@ class Ability
       can [:add_to_cart, :destroy, :index], [Cart]
       can [:new, :create], [Payment]
     else  # Shopkeepers
-      can [:new, :create], [Offer]
+      can [:new, :create,:index, :edit,:update,:destroy], [Offer]
       can [:index, :new,:create], [Product]
-      can [:new, :create,:show_mall], [Shop]
+      can [:new, :create,:show_mall,:index, :edit, :update, :destroy], [Shop]
       can [:index, :edit, :update], [User]
       can [:show_state, :show_city], [Mall]
     end

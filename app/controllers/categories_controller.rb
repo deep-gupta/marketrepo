@@ -24,7 +24,26 @@ class CategoriesController < ApplicationController
       render 'new'
     end  
   end
-
+  
+  def edit
+    @category = Category.find(params[:id])
+  end
+  
+  def update
+  debugger
+    @category = Category.find(params[:id])
+    @category.update_attributes(params[:category])
+    
+      redirect_to categories_path
+  end
+  
+  def destroy
+    @category = Category.find(params[:id])
+    @category.delete
+    
+    redirect_to categories_path
+  end
+  
   def choose_categories
     # visitors
     @categories = Category.all
@@ -32,19 +51,21 @@ class CategoriesController < ApplicationController
 
   def save_categories
     #visitors
-    @user_categories = current_user.user_categories
-    #@user_categories.delete_all
+  
+    @usercategories = current_user.user_categories
+    @usercategories.destroy_all
     
     params[:name_ids].each do |name|
+    
       begin
-        current_user.user_categories.create(category_id: name)
+        current_user.user_categories.create(:category_id => name)
         #raise 'a test exception'
       rescue Exception => e
         puts "Error occours"
         redirect_to users_path, :flash => {:notice => "Error occour"} and return
       end 
     end
-    @user_categories.delete_all
+    #@usercategories.destroy_all
     redirect_to users_path, :flash => {:notice => "Category successfully Added to your profile"}
   end
   

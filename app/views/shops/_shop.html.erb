@@ -1,7 +1,6 @@
 <div class="p_shop"> 
     <div class="well p_shop_in" >
       <ul class="nav nav-list">
-        
         <li class="nav-header">
           <%= Shop.where(:shop_id => params[:shop_id]).name %>
         </li>
@@ -14,8 +13,9 @@
         <li>
           <%=link_to "Add product" ,new_shop_product_path %>
         </li>
-        
-      
+        <li>
+          <%=link_to "Show all offers" , shop_offers_path %>
+        </li>
       <ul>
       <li class="divider"></li>
         </ul>

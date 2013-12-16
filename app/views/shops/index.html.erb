@@ -1,4 +1,4 @@
-<%= render "users/admin" %>
+<%= render "users/shopkeeper" %>
 <div class="panelbox">
   <div class="panel panel-default p_t_30">
     <div class="panel-heading"><h2>Malls</h2></div>
@@ -6,21 +6,18 @@
       <table class="table table-striped table table-bordered">
         <tr>
           <th>name</th>
-          <th>address</th>
-          <th>city</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
-      <% @malls.each do |m|%>
+      <% @shops.each do |s|%>
         <tr>
-          <td><%= m.name%></td>
-          <td><%= m.address%></td>
-          <td><%=m.city.name%><br /></td>
-          <td><%= link_to "Edit", edit_mall_path(m.id) %></td>
-          <td><%= link_to "Delete", mall_path(m.id), :method => :delete %></td> 
+          <td><%= s.name%></td>
+          <td><%= link_to "Edit", edit_shop_path(s.id) %></td>
+          <td><%= link_to "Delete", shop_path(s.id), :method => :delete %></td> 
         </tr>
       <% end%>
       </table>
     </div>
   </div>
 </div>
+
